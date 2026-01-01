@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yago Caldas - Portfolio</title>
+    <meta name="description" content="Portfolio de Ernesto Yago Caldas Zapata - Estudiante de Ciencias de la Computación">
     <style>
         * {
             margin: 0;
@@ -12,18 +13,19 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --accent: #06b6d4;
+            --gold: #FFD700;
+            --dark-gold: #DAA520;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --text-gray: #b0b0b0;
+            --white: #ffffff;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--dark);
+            background: var(--black);
+            color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -35,13 +37,14 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
         }
 
         nav {
@@ -52,20 +55,23 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
@@ -79,12 +85,47 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: white;
+            background: var(--gold);
             transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
         }
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        .lang-switch {
+            background: var(--light-gray);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-switch:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--gold);
+            transition: all 0.3s;
         }
 
         .hero {
@@ -93,20 +134,53 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
-            padding-top: 80px;
+            padding-top: 100px;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: fadeInUp 1s ease;
         }
 
         .hero-content .subtitle {
             font-size: 1.5rem;
+            color: var(--gold);
             margin-bottom: 2rem;
-            opacity: 0.9;
             animation: fadeInUp 1s ease 0.2s backwards;
         }
 
@@ -114,7 +188,7 @@
             max-width: 700px;
             margin: 0 auto 2rem;
             font-size: 1.1rem;
-            line-height: 1.8;
+            color: var(--text-gray);
             animation: fadeInUp 1s ease 0.4s backwards;
         }
 
@@ -136,60 +210,63 @@
         }
 
         .btn-primary {
-            background: white;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: var(--gold);
+            border: 2px solid var(--gold);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: var(--primary);
+            background: var(--gold);
+            color: var(--black);
         }
 
         .section {
             padding: 80px 0;
-            background: var(--light);
+            background: var(--dark-gray);
+        }
+
+        .section:nth-child(even) {
+            background: var(--black);
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: var(--dark);
             position: relative;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
             margin: 1rem auto;
             border-radius: 2px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background: white;
+            background: var(--light-gray);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
             transition: all 0.3s;
             opacity: 0;
             transform: translateY(30px);
@@ -201,18 +278,25 @@
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
         }
 
         .project-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: linear-gradient(135deg, var(--dark-gray), var(--black));
             padding: 1.5rem;
+            border-bottom: 2px solid var(--gold);
         }
 
         .project-header h3 {
             font-size: 1.3rem;
+            color: var(--gold);
             margin-bottom: 0.5rem;
+        }
+
+        .project-header p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
         }
 
         .project-content {
@@ -228,13 +312,14 @@
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--text-gray);
         }
 
         .project-content ul li::before {
             content: '▸';
             position: absolute;
             left: 0;
-            color: var(--primary);
+            color: var(--gold);
             font-weight: bold;
         }
 
@@ -246,39 +331,41 @@
         }
 
         .tag {
-            background: var(--light);
-            color: var(--gray);
+            background: var(--dark-gray);
+            color: var(--gold);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
+            border: 1px solid var(--gold);
         }
 
         .project-link {
             display: inline-block;
             margin-top: 1rem;
-            color: var(--primary);
+            color: var(--gold);
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
         }
 
         .project-link:hover {
-            color: var(--secondary);
+            color: var(--dark-gold);
             transform: translateX(5px);
         }
 
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .skill-category {
-            background: white;
+            background: var(--light-gray);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid var(--dark-gray);
+            transition: all 0.3s;
             opacity: 0;
             transform: translateY(30px);
         }
@@ -287,8 +374,13 @@
             animation: fadeInUp 0.6s ease forwards;
         }
 
+        .skill-category:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
         .skill-category h3 {
-            color: var(--primary);
+            color: var(--gold);
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
@@ -300,17 +392,24 @@
         }
 
         .skill-item {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: var(--dark-gray);
+            color: var(--white);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
+            border: 1px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: scale(1.05);
         }
 
         .contact-section {
-            background: linear-gradient(135deg, var(--dark), #1e293b);
-            color: white;
+            background: linear-gradient(135deg, var(--black), var(--dark-gray));
         }
 
         .contact-info {
@@ -322,64 +421,72 @@
 
         .contact-item {
             padding: 2rem;
-            background: rgba(255,255,255,0.05);
+            background: var(--light-gray);
             border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 2px solid var(--dark-gray);
             transition: all 0.3s;
         }
 
         .contact-item:hover {
-            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
             transform: translateY(-5px);
-        }
-
-        .contact-item i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         }
 
         .contact-item h3 {
             margin-bottom: 0.5rem;
+            color: var(--gold);
         }
 
         .contact-item a {
-            color: var(--accent);
+            color: var(--text-gray);
             text-decoration: none;
+            transition: color 0.3s;
             word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            color: var(--gold);
+        }
+
+        .contact-item p {
+            color: var(--text-gray);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
         .social-links a {
             width: 50px;
             height: 50px;
-            background: rgba(255,255,255,0.1);
+            background: var(--light-gray);
+            border: 2px solid var(--gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--gold);
             font-size: 1.5rem;
             transition: all 0.3s;
+            text-decoration: none;
         }
 
         .social-links a:hover {
-            background: var(--accent);
+            background: var(--gold);
+            color: var(--black);
             transform: scale(1.1);
         }
 
         footer {
-            background: var(--dark);
-            color: white;
+            background: var(--black);
+            color: var(--text-gray);
             text-align: center;
             padding: 2rem 0;
+            border-top: 2px solid var(--gold);
         }
 
         @keyframes fadeInUp {
@@ -393,9 +500,36 @@
             }
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
                 gap: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s;
+                border-top: 2px solid var(--gold);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
             }
 
             .hero-content h1 {
@@ -409,6 +543,40 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -416,11 +584,17 @@
     <header>
         <nav class="container">
             <div class="logo">YC</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio" data-en="Home" data-es="Inicio">Inicio</a></li>
+                <li><a href="#proyectos" data-en="Projects" data-es="Proyectos">Proyectos</a></li>
+                <li><a href="#habilidades" data-en="Skills" data-es="Habilidades">Habilidades</a></li>
+                <li><a href="#contacto" data-en="Contact" data-es="Contacto">Contacto</a></li>
+                <li><button class="lang-switch" onclick="toggleLanguage()">EN</button></li>
             </ul>
         </nav>
     </header>
@@ -428,50 +602,50 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>Ernesto Yago Caldas Zapata</h1>
-            <p class="subtitle">Estudiante de Ciencias de la Computación</p>
-            <p>Apasionado por el desarrollo de software con sólidos conocimientos en programación y bases de datos. Me caracterizo por mi capacidad de análisis, trabajo en equipo y aprendizaje autónomo.</p>
+            <p class="subtitle" data-en="Computer Science Student" data-es="Estudiante de Ciencias de la Computación">Estudiante de Ciencias de la Computación</p>
+            <p data-en="Passionate about software development with solid knowledge in programming and databases. I am characterized by my analytical ability, teamwork, and autonomous learning." data-es="Apasionado por el desarrollo de software con sólidos conocimientos en programación y bases de datos. Me caracterizo por mi capacidad de análisis, trabajo en equipo y aprendizaje autónomo.">Apasionado por el desarrollo de software con sólidos conocimientos en programación y bases de datos. Me caracterizo por mi capacidad de análisis, trabajo en equipo y aprendizaje autónomo.</p>
             <div class="btn-group">
-                <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
-                <a href="#contacto" class="btn btn-secondary">Contacto</a>
+                <a href="#proyectos" class="btn btn-primary" data-en="View Projects" data-es="Ver Proyectos">Ver Proyectos</a>
+                <a href="#contacto" class="btn btn-secondary" data-en="Contact" data-es="Contacto">Contacto</a>
             </div>
         </div>
     </section>
 
     <section class="section" id="proyectos">
         <div class="container">
-            <h2 class="section-title">Proyectos Destacados</h2>
+            <h2 class="section-title" data-en="Featured Projects" data-es="Proyectos Destacados">Proyectos Destacados</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-header">
                         <h3>SafeMoto – Landing Page</h3>
-                        <p>Sistema de monitoreo inteligente para motocicletas</p>
+                        <p data-en="Intelligent monitoring system for motorcycles" data-es="Sistema de monitoreo inteligente para motocicletas">Sistema de monitoreo inteligente para motocicletas</p>
                     </div>
                     <div class="project-content">
                         <ul>
-                            <li>Landing page informativa para sistema de seguridad vehicular</li>
-                            <li>Monitoreo en tiempo real y alertas instantáneas</li>
-                            <li>Diseño responsive y UX optimizada</li>
+                            <li data-en="Informative landing page for vehicle security system" data-es="Landing page informativa para sistema de seguridad vehicular">Landing page informativa para sistema de seguridad vehicular</li>
+                            <li data-en="Real-time monitoring and instant alerts" data-es="Monitoreo en tiempo real y alertas instantáneas">Monitoreo en tiempo real y alertas instantáneas</li>
+                            <li data-en="Responsive design and optimized UX" data-es="Diseño responsive y UX optimizada">Diseño responsive y UX optimizada</li>
                         </ul>
                         <div class="tech-tags">
                             <span class="tag">HTML5</span>
                             <span class="tag">CSS3</span>
                             <span class="tag">JavaScript</span>
                         </div>
-                        <a href="https://yagocz.github.io/safemoto-landing/" target="_blank" class="project-link">Ver proyecto →</a>
+                        <a href="https://yagocz.github.io/safemoto-landing/" target="_blank" class="project-link" data-en="View project →" data-es="Ver proyecto →">Ver proyecto →</a>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>λóγος (Logos)</h3>
-                        <p>Lenguaje de Programación para Lógica Proposicional</p>
+                        <h3>λόγος (Logos)</h3>
+                        <p data-en="Programming Language for Propositional Logic" data-es="Lenguaje de Programación para Lógica Proposicional">Lenguaje de Programación para Lógica Proposicional</p>
                     </div>
                     <div class="project-content">
                         <ul>
-                            <li>DSL para evaluar expresiones lógicas y booleanas</li>
-                            <li>Compilador completo con análisis léxico, sintáctico y semántico</li>
-                            <li>Generación de LLVM IR y ejecución JIT</li>
-                            <li>Simulación de circuitos digitales combinacionales</li>
+                            <li data-en="DSL to evaluate logical and boolean expressions" data-es="DSL para evaluar expresiones lógicas y booleanas">DSL para evaluar expresiones lógicas y booleanas</li>
+                            <li data-en="Complete compiler with lexical, syntactic and semantic analysis" data-es="Compilador completo con análisis léxico, sintáctico y semántico">Compilador completo con análisis léxico, sintáctico y semántico</li>
+                            <li data-en="LLVM IR generation and JIT execution" data-es="Generación de LLVM IR y ejecución JIT">Generación de LLVM IR y ejecución JIT</li>
+                            <li data-en="Digital circuit simulation" data-es="Simulación de circuitos digitales">Simulación de circuitos digitales</li>
                         </ul>
                         <div class="tech-tags">
                             <span class="tag">C++17</span>
@@ -479,21 +653,21 @@
                             <span class="tag">LLVM</span>
                             <span class="tag">CMake</span>
                         </div>
-                        <a href="https://github.com/kaneeqi/logos-lang" target="_blank" class="project-link">Ver proyecto →</a>
+                        <a href="https://github.com/kaneeqi/logos-lang" target="_blank" class="project-link" data-en="View project →" data-es="Ver proyecto →">Ver proyecto →</a>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Detección y OCR de Placas</h3>
-                        <p>Visión por Computadora e IA</p>
+                        <h3 data-en="Vehicle Plate Detection & OCR" data-es="Detección y OCR de Placas">Detección y OCR de Placas</h3>
+                        <p data-en="Computer Vision & AI" data-es="Visión por Computadora e IA">Visión por Computadora e IA</p>
                     </div>
                     <div class="project-content">
                         <ul>
-                            <li>Aplicación web para detección de placas vehiculares</li>
-                            <li>Detección automática con YOLO11</li>
-                            <li>Reconocimiento de texto mediante EasyOCR</li>
-                            <li>Visualización en tiempo real con bounding boxes</li>
+                            <li data-en="Web application for vehicle plate detection" data-es="Aplicación web para detección de placas vehiculares">Aplicación web para detección de placas vehiculares</li>
+                            <li data-en="Automatic detection with YOLO11" data-es="Detección automática con YOLO11">Detección automática con YOLO11</li>
+                            <li data-en="Text recognition using EasyOCR" data-es="Reconocimiento de texto mediante EasyOCR">Reconocimiento de texto mediante EasyOCR</li>
+                            <li data-en="Real-time visualization with bounding boxes" data-es="Visualización en tiempo real con bounding boxes">Visualización en tiempo real con bounding boxes</li>
                         </ul>
                         <div class="tech-tags">
                             <span class="tag">Python</span>
@@ -502,19 +676,19 @@
                             <span class="tag">OpenCV</span>
                             <span class="tag">EasyOCR</span>
                         </div>
-                        <a href="https://github.com/mavicCode/Proyecto-placas-vehiculares.git" target="_blank" class="project-link">Ver proyecto →</a>
+                        <a href="https://github.com/mavicCode/Proyecto-placas-vehiculares.git" target="_blank" class="project-link" data-en="View project →" data-es="Ver proyecto →">Ver proyecto →</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" id="habilidades" style="background: #f1f5f9;">
+    <section class="section" id="habilidades">
         <div class="container">
-            <h2 class="section-title">Habilidades</h2>
+            <h2 class="section-title" data-en="Skills" data-es="Habilidades">Habilidades</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Lenguajes de Programación</h3>
+                    <h3 data-en="Programming Languages" data-es="Lenguajes de Programación">Lenguajes de Programación</h3>
                     <div class="skill-list">
                         <span class="skill-item">Python</span>
                         <span class="skill-item">C++</span>
@@ -526,41 +700,54 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Tecnologías Web</h3>
+                    <h3 data-en="Frontend Technologies" data-es="Tecnologías Frontend">Tecnologías Frontend</h3>
                     <div class="skill-list">
                         <span class="skill-item">HTML5</span>
                         <span class="skill-item">CSS3</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">Flask</span>
+                        <span class="skill-item">React</span>
+                        <span class="skill-item">Next.js</span>
+                        <span class="skill-item">Angular</span>
+                        <span class="skill-item">Tailwind</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Bases de Datos</h3>
+                    <h3 data-en="Backend & Databases" data-es="Backend y Bases de Datos">Backend y Bases de Datos</h3>
                     <div class="skill-list">
-                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">Flask</span>
                         <span class="skill-item">MongoDB</span>
+                        <span class="skill-item">Azure</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Herramientas & Metodologías</h3>
+                    <h3 data-en="AI & Computer Vision" data-es="IA y Visión por Computadora">IA y Visión por Computadora</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">YOLO</span>
+                        <span class="skill-item">OpenCV</span>
+                        <span class="skill-item">EasyOCR</span>
+                        <span class="skill-item">NumPy</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-en="Tools & Methodologies" data-es="Herramientas y Metodologías">Herramientas y Metodologías</h3>
                     <div class="skill-list">
                         <span class="skill-item">Git</span>
                         <span class="skill-item">Scrum</span>
-                        <span class="skill-item">Excel Avanzado</span>
                         <span class="skill-item">LLVM</span>
-                        <span class="skill-item">OpenCV</span>
+                        <span class="skill-item">CMake</span>
+                        <span class="skill-item">Excel</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Habilidades Personales</h3>
+                    <h3 data-en="Soft Skills" data-es="Habilidades Blandas">Habilidades Blandas</h3>
                     <div class="skill-list">
-                        <span class="skill-item">Resolución de problemas</span>
-                        <span class="skill-item">Trabajo en equipo</span>
-                        <span class="skill-item">Aprendizaje autónomo</span>
-                        <span class="skill-item">Pensamiento analítico</span>
+                        <span class="skill-item" data-en="Problem Solving" data-es="Resolución de problemas">Resolución de problemas</span>
+                        <span class="skill-item" data-en="Teamwork" data-es="Trabajo en equipo">Trabajo en equipo</span>
+                        <span class="skill-item" data-en="Self-learning" data-es="Aprendizaje autónomo">Aprendizaje autónomo</span>
+                        <span class="skill-item" data-en="Analytical Thinking" data-es="Pensamiento analítico">Pensamiento analítico</span>
                     </div>
                 </div>
             </div>
@@ -569,18 +756,18 @@
 
     <section class="contact-section" id="contacto">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Contacto</h2>
+            <h2 class="section-title" data-en="Contact" data-es="Contacto">Contacto</h2>
             <div class="contact-info">
                 <div class="contact-item">
                     <h3>📧 Email</h3>
                     <a href="mailto:yagocz0206@gmail.com">yagocz0206@gmail.com</a>
                 </div>
                 <div class="contact-item">
-                    <h3>📱 Teléfono</h3>
+                    <h3 data-en="📱 Phone" data-es="📱 Teléfono">📱 Teléfono</h3>
                     <p>+51 994 146 110</p>
                 </div>
                 <div class="contact-item">
-                    <h3>📍 Ubicación</h3>
+                    <h3 data-en="📍 Location" data-es="📍 Ubicación">📍 Ubicación</h3>
                     <p>Lima, Perú</p>
                 </div>
             </div>
@@ -592,14 +779,39 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Yago Caldas. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Yago Caldas. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">Todos los derechos reservados.</span></p>
     </footer>
 
     <script>
-        // Smooth scroll
+        let currentLang = 'es';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            const btn = document.querySelector('.lang-switch');
+            btn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+            
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const newText = el.getAttribute(`data-${currentLang}`);
+                if (el.tagName === 'A' || el.tagName === 'BUTTON') {
+                    el.textContent = newText;
+                } else if (el.tagName === 'SPAN' && el.classList.contains('skill-item')) {
+                    el.textContent = newText;
+                } else {
+                    el.textContent = newText;
+                }
+            });
+        }
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -607,7 +819,6 @@
             });
         });
 
-        // Intersection Observer para animaciones
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -625,13 +836,14 @@
             observer.observe(el);
         });
 
-        // Cambiar color del header al hacer scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(15, 23, 42, 0.95)';
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(255, 215, 0, 0.3)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(255, 215, 0, 0.2)';
             }
         });
     </script>

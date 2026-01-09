@@ -169,6 +169,17 @@
         .mobile-nav li { margin: 20px 0; }
         .mobile-nav a { color: var(--text-primary); font-size: 1.2rem; font-weight: 600; text-decoration: none; display: block; }
 
+        /* Language Switcher */
+        .lang-switcher { position: relative; }
+        .lang-btn { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 8px; padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-primary); font-weight: 500; transition: all 0.3s; }
+        .lang-btn:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--primary); }
+        .lang-dropdown { position: absolute; top: 120%; right: 0; background: rgba(15, 15, 25, 0.98); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; min-width: 150px; display: none; z-index: 1000; }
+        .lang-dropdown.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .lang-option { padding: 10px 15px; cursor: pointer; border-radius: 8px; transition: all 0.2s; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; }
+        .lang-option:hover { background: var(--glass); color: var(--primary); }
+        .lang-option.active { background: rgba(99, 102, 241, 0.1); color: var(--primary); font-weight: 600; }
+
         @media (max-width: 1024px) { 
             .hero-content { grid-template-columns: 1fr; gap: 40px; } 
             .container { padding: 0 30px; }
@@ -207,20 +218,56 @@
         <nav class="container">
             <div class="logo">YAGO.DEV</div>
             <ul class="nav-links">
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Habilidades</a></li>
+                <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
             </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn" onclick="toggleLangDropdown()">
+                    <i data-lucide="globe" style="width: 18px; height: 18px;"></i>
+                    <span id="currentLang">ES</span>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-option active" onclick="changeLang('es')" data-lang="es">
+                        <span>🇪🇸</span>
+                        <span>Español</span>
+                    </div>
+                    <div class="lang-option" onclick="changeLang('en')" data-lang="en">
+                        <span>🇺🇸</span>
+                        <span>English</span>
+                    </div>
+                    <div class="lang-option" onclick="changeLang('pt')" data-lang="pt">
+                        <span>🇧🇷</span>
+                        <span>Português</span>
+                    </div>
+                    <div class="lang-option" onclick="changeLang('fr')" data-lang="fr">
+                        <span>🇫🇷</span>
+                        <span>Français</span>
+                    </div>
+                    <div class="lang-option" onclick="changeLang('de')" data-lang="de">
+                        <span>🇩🇪</span>
+                        <span>Deutsch</span>
+                    </div>
+                </div>
+            </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <i data-lucide="menu"></i>
             </button>
         </nav>
         <div class="mobile-nav" id="mobileNav">
             <ul>
-                <li><a href="#proyectos" onclick="toggleMobileMenu()">Proyectos</a></li>
-                <li><a href="#skills" onclick="toggleMobileMenu()">Habilidades</a></li>
-                <li><a href="#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
+                <li><a href="#proyectos" onclick="toggleMobileMenu()" data-i18n="nav.projects">Proyectos</a></li>
+                <li><a href="#skills" onclick="toggleMobileMenu()" data-i18n="nav.skills">Habilidades</a></li>
+                <li><a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.contact">Contacto</a></li>
             </ul>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+                <div style="color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem;">Idioma / Language</div>
+                <div style="display: grid; gap: 10px;">
+                    <button onclick="changeLang('es'); toggleMobileMenu();" style="background: var(--glass); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px; color: var(--text-primary); cursor: pointer;">🇪🇸 Español</button>
+                    <button onclick="changeLang('en'); toggleMobileMenu();" style="background: var(--glass); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px; color: var(--text-primary); cursor: pointer;">🇺🇸 English</button>
+                    <button onclick="changeLang('pt'); toggleMobileMenu();" style="background: var(--glass); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px; color: var(--text-primary); cursor: pointer;">🇧🇷 Português</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -229,12 +276,12 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <div class="hero-subtitle">SOFTWARE ENGINEER & AI SPECIALIST</div>
-                        <h1>Ernesto Yago Caldas</h1>
-                        <p class="hero-description">Estudiante de Ciencias de la Computación apasionado por crear soluciones innovadoras mediante IA y desarrollo full-stack. Especializado en RAG, compiladores y visión por computadora.</p>
+                        <div class="hero-subtitle" data-i18n="hero.subtitle">SOFTWARE ENGINEER & AI SPECIALIST</div>
+                        <h1 data-i18n="hero.name">Ernesto Yago Caldas</h1>
+                        <p class="hero-description" data-i18n="hero.description">Estudiante de Ciencias de la Computación apasionado por crear soluciones innovadoras mediante IA y desarrollo full-stack. Especializado en RAG, compiladores y visión por computadora.</p>
                         <div class="hero-cta">
-                            <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
-                            <a href="#contacto" class="btn btn-secondary">Contacto</a>
+                            <a href="#proyectos" class="btn btn-primary" data-i18n="hero.cta1">Ver Proyectos</a>
+                            <a href="#contacto" class="btn btn-secondary" data-i18n="hero.cta2">Contacto</a>
                         </div>
                     </div>
                     <div class="hero-visual">
@@ -265,15 +312,15 @@
                 <div class="stats reveal">
                     <div class="stat-card">
                         <div class="stat-number">7°</div>
-                        <div class="stat-label">Ciclo UPC</div>
+                        <div class="stat-label" data-i18n="stats.semester">Ciclo UPC</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">15+</div>
-                        <div class="stat-label">Tecnologías</div>
+                        <div class="stat-label" data-i18n="stats.tech">Tecnologías</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">4</div>
-                        <div class="stat-label">Proyectos Destacados</div>
+                        <div class="stat-label" data-i18n="stats.projects">Proyectos Destacados</div>
                     </div>
                 </div>
             </div>
@@ -282,9 +329,9 @@
         <section class="section" id="proyectos">
             <div class="container">
                 <div class="section-header reveal">
-                    <div class="section-label">MI TRABAJO</div>
-                    <h2 class="section-title">Proyectos Destacados</h2>
-                    <p class="section-description">Soluciones innovadoras que combinan creatividad técnica y tecnología de vanguardia para resolver problemas del mundo real.</p>
+                    <div class="section-label" data-i18n="projects.label">MI TRABAJO</div>
+                    <h2 class="section-title" data-i18n="projects.title">Proyectos Destacados</h2>
+                    <p class="section-description" data-i18n="projects.description">Soluciones innovadoras que combinan creatividad técnica y tecnología de vanguardia para resolver problemas del mundo real.</p>
                 </div>
 
                 <div class="projects-grid">
@@ -302,7 +349,7 @@
                             <span class="tag">Pinecone</span>
                         </div>
                         <a href="https://legal-bot-two.vercel.app/" target="_blank" class="project-link">
-                            Ver Demo <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            <span data-i18n="projects.viewDemo">Ver Demo</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
                         </a>
                     </div>
 
@@ -319,7 +366,7 @@
                             <span class="tag">CMake</span>
                         </div>
                         <a href="https://github.com/kaneeqi/logos-lang" target="_blank" class="project-link">
-                            Ver Código <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            <span data-i18n="projects.viewCode">Ver Código</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
                         </a>
                     </div>
 
@@ -337,7 +384,7 @@
                             <span class="tag">Flask</span>
                         </div>
                         <a href="https://github.com/mavicCode/Proyecto-placas-vehiculares.git" target="_blank" class="project-link">
-                            Ver Repositorio <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            <span data-i18n="projects.viewRepo">Ver Repositorio</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
                         </a>
                     </div>
 
@@ -353,7 +400,7 @@
                             <span class="tag">JavaScript ES6</span>
                         </div>
                         <a href="https://yagocz.github.io/safemoto-landing/" target="_blank" class="project-link">
-                            Ver Landing <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            <span data-i18n="projects.viewLanding">Ver Landing</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
                         </a>
                     </div>
                 </div>
@@ -363,9 +410,9 @@
         <section class="section" id="skills">
             <div class="container">
                 <div class="section-header reveal">
-                    <div class="section-label">COMPETENCIAS</div>
-                    <h2 class="section-title">Stack Tecnológico</h2>
-                    <p class="section-description">Tecnologías y herramientas que domino para crear soluciones robustas y escalables.</p>
+                    <div class="section-label" data-i18n="skills.label">COMPETENCIAS</div>
+                    <h2 class="section-title" data-i18n="skills.title">Stack Tecnológico</h2>
+                    <p class="section-description" data-i18n="skills.description">Tecnologías y herramientas que domino para crear soluciones robustas y escalables.</p>
                 </div>
 
                 <div class="skills-grid">
@@ -449,9 +496,9 @@
         <section class="section" id="contacto">
             <div class="container">
                 <div class="contact-content reveal">
-                    <div class="section-label">¿LISTO PARA COLABORAR?</div>
-                    <h2 class="section-title">Construyamos Algo Increíble</h2>
-                    <p class="section-description">Estoy abierto a oportunidades de desarrollo, colaboraciones en proyectos innovadores y conversaciones sobre tecnología.</p>
+                    <div class="section-label" data-i18n="contact.label">¿LISTO PARA COLABORAR?</div>
+                    <h2 class="section-title" data-i18n="contact.title">Construyamos Algo Increíble</h2>
+                    <p class="section-description" data-i18n="contact.description">Estoy abierto a oportunidades de desarrollo, colaboraciones en proyectos innovadores y conversaciones sobre tecnología.</p>
                     <div class="contact-email">yagocz0206@gmail.com</div>
                     <div class="social-links">
                         <a href="https://github.com/yagocz" target="_blank" class="social-link" title="GitHub">
@@ -468,10 +515,10 @@
                         </a>
                     </div>
                     <div style="margin-top: 30px; padding: 25px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; text-align: left;">
-                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.1rem;">Información de Contacto</h3>
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.1rem;" data-i18n="contact.info">Información de Contacto</h3>
                         <p style="color: var(--text-secondary); margin-bottom: 10px;"><i data-lucide="map-pin" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 8px;"></i> Lima, Perú</p>
                         <p style="color: var(--text-secondary); margin-bottom: 10px;"><i data-lucide="phone" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 8px;"></i> +51 994 146 110</p>
-                        <p style="color: var(--text-secondary);"><i data-lucide="calendar" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 8px;"></i> Disponible para oportunidades</p>
+                        <p style="color: var(--text-secondary);"><i data-lucide="calendar" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 8px;"></i> <span data-i18n="contact.available">Disponible para oportunidades</span></p>
                     </div>
                 </div>
             </div>
@@ -486,6 +533,207 @@
 
     <script>
         lucide.createIcons();
+
+        // i18n Translations
+        const translations = {
+            es: {
+                nav: { projects: "Proyectos", skills: "Habilidades", contact: "Contacto" },
+                hero: {
+                    subtitle: "SOFTWARE ENGINEER & AI SPECIALIST",
+                    name: "Ernesto Yago Caldas",
+                    description: "Estudiante de Ciencias de la Computación apasionado por crear soluciones innovadoras mediante IA y desarrollo full-stack. Especializado en RAG, compiladores y visión por computadora.",
+                    cta1: "Ver Proyectos",
+                    cta2: "Contacto"
+                },
+                stats: { semester: "Ciclo UPC", tech: "Tecnologías", projects: "Proyectos Destacados" },
+                projects: {
+                    label: "MI TRABAJO",
+                    title: "Proyectos Destacados",
+                    description: "Soluciones innovadoras que combinan creatividad técnica y tecnología de vanguardia para resolver problemas del mundo real.",
+                    viewDemo: "Ver Demo",
+                    viewCode: "Ver Código",
+                    viewRepo: "Ver Repositorio",
+                    viewLanding: "Ver Landing"
+                },
+                skills: {
+                    label: "COMPETENCIAS",
+                    title: "Stack Tecnológico",
+                    description: "Tecnologías y herramientas que domino para crear soluciones robustas y escalables."
+                },
+                contact: {
+                    label: "¿LISTO PARA COLABORAR?",
+                    title: "Construyamos Algo Increíble",
+                    description: "Estoy abierto a oportunidades de desarrollo, colaboraciones en proyectos innovadores y conversaciones sobre tecnología.",
+                    info: "Información de Contacto",
+                    available: "Disponible para oportunidades"
+                }
+            },
+            en: {
+                nav: { projects: "Projects", skills: "Skills", contact: "Contact" },
+                hero: {
+                    subtitle: "SOFTWARE ENGINEER & AI SPECIALIST",
+                    name: "Ernesto Yago Caldas",
+                    description: "Computer Science student passionate about creating innovative solutions through AI and full-stack development. Specialized in RAG, compilers, and computer vision.",
+                    cta1: "View Projects",
+                    cta2: "Contact"
+                },
+                stats: { semester: "UPC Semester", tech: "Technologies", projects: "Featured Projects" },
+                projects: {
+                    label: "MY WORK",
+                    title: "Featured Projects",
+                    description: "Innovative solutions combining technical creativity and cutting-edge technology to solve real-world problems.",
+                    viewDemo: "View Demo",
+                    viewCode: "View Code",
+                    viewRepo: "View Repository",
+                    viewLanding: "View Landing"
+                },
+                skills: {
+                    label: "COMPETENCIES",
+                    title: "Tech Stack",
+                    description: "Technologies and tools I master to create robust and scalable solutions."
+                },
+                contact: {
+                    label: "READY TO COLLABORATE?",
+                    title: "Let's Build Something Amazing",
+                    description: "I'm open to development opportunities, collaborations on innovative projects, and conversations about technology.",
+                    info: "Contact Information",
+                    available: "Available for opportunities"
+                }
+            },
+            pt: {
+                nav: { projects: "Projetos", skills: "Habilidades", contact: "Contato" },
+                hero: {
+                    subtitle: "ENGENHEIRO DE SOFTWARE E ESPECIALISTA EM IA",
+                    name: "Ernesto Yago Caldas",
+                    description: "Estudante de Ciência da Computação apaixonado por criar soluções inovadoras através de IA e desenvolvimento full-stack. Especializado em RAG, compiladores e visão computacional.",
+                    cta1: "Ver Projetos",
+                    cta2: "Contato"
+                },
+                stats: { semester: "Semestre UPC", tech: "Tecnologias", projects: "Projetos Destacados" },
+                projects: {
+                    label: "MEU TRABALHO",
+                    title: "Projetos Destacados",
+                    description: "Soluções inovadoras que combinam criatividade técnica e tecnologia de ponta para resolver problemas do mundo real.",
+                    viewDemo: "Ver Demo",
+                    viewCode: "Ver Código",
+                    viewRepo: "Ver Repositório",
+                    viewLanding: "Ver Landing"
+                },
+                skills: {
+                    label: "COMPETÊNCIAS",
+                    title: "Stack Tecnológico",
+                    description: "Tecnologias e ferramentas que domino para criar soluções robustas e escaláveis."
+                },
+                contact: {
+                    label: "PRONTO PARA COLABORAR?",
+                    title: "Vamos Construir Algo Incrível",
+                    description: "Estou aberto a oportunidades de desenvolvimento, colaborações em projetos inovadores e conversas sobre tecnologia.",
+                    info: "Informações de Contato",
+                    available: "Disponível para oportunidades"
+                }
+            },
+            fr: {
+                nav: { projects: "Projets", skills: "Compétences", contact: "Contact" },
+                hero: {
+                    subtitle: "INGÉNIEUR LOGICIEL ET SPÉCIALISTE IA",
+                    name: "Ernesto Yago Caldas",
+                    description: "Étudiant en informatique passionné par la création de solutions innovantes grâce à l'IA et au développement full-stack. Spécialisé en RAG, compilateurs et vision par ordinateur.",
+                    cta1: "Voir les Projets",
+                    cta2: "Contact"
+                },
+                stats: { semester: "Semestre UPC", tech: "Technologies", projects: "Projets Vedettes" },
+                projects: {
+                    label: "MON TRAVAIL",
+                    title: "Projets Vedettes",
+                    description: "Solutions innovantes combinant créativité technique et technologie de pointe pour résoudre des problèmes réels.",
+                    viewDemo: "Voir la Démo",
+                    viewCode: "Voir le Code",
+                    viewRepo: "Voir le Dépôt",
+                    viewLanding: "Voir la Landing"
+                },
+                skills: {
+                    label: "COMPÉTENCES",
+                    title: "Stack Technologique",
+                    description: "Technologies et outils que je maîtrise pour créer des solutions robustes et évolutives."
+                },
+                contact: {
+                    label: "PRÊT À COLLABORER?",
+                    title: "Construisons Quelque Chose d'Incroyable",
+                    description: "Je suis ouvert aux opportunités de développement, aux collaborations sur des projets innovants et aux conversations sur la technologie.",
+                    info: "Informations de Contact",
+                    available: "Disponible pour opportunités"
+                }
+            },
+            de: {
+                nav: { projects: "Projekte", skills: "Fähigkeiten", contact: "Kontakt" },
+                hero: {
+                    subtitle: "SOFTWARE-INGENIEUR UND KI-SPEZIALIST",
+                    name: "Ernesto Yago Caldas",
+                    description: "Informatikstudent mit Leidenschaft für innovative Lösungen durch KI und Full-Stack-Entwicklung. Spezialisiert auf RAG, Compiler und Computer Vision.",
+                    cta1: "Projekte Ansehen",
+                    cta2: "Kontakt"
+                },
+                stats: { semester: "UPC Semester", tech: "Technologien", projects: "Hervorgehobene Projekte" },
+                projects: {
+                    label: "MEINE ARBEIT",
+                    title: "Hervorgehobene Projekte",
+                    description: "Innovative Lösungen, die technische Kreativität und Spitzentechnologie kombinieren, um reale Probleme zu lösen.",
+                    viewDemo: "Demo Ansehen",
+                    viewCode: "Code Ansehen",
+                    viewRepo: "Repository Ansehen",
+                    viewLanding: "Landing Ansehen"
+                },
+                skills: {
+                    label: "KOMPETENZEN",
+                    title: "Tech Stack",
+                    description: "Technologien und Werkzeuge, die ich beherrsche, um robuste und skalierbare Lösungen zu erstellen."
+                },
+                contact: {
+                    label: "BEREIT ZUR ZUSAMMENARBEIT?",
+                    title: "Lass uns etwas Großartiges aufbauen",
+                    description: "Ich bin offen für Entwicklungsmöglichkeiten, Zusammenarbeit bei innovativen Projekten und Gespräche über Technologie.",
+                    info: "Kontaktinformationen",
+                    available: "Verfügbar für Möglichkeiten"
+                }
+            }
+        };
+
+        let currentLang = 'es';
+
+        function changeLang(lang) {
+            currentLang = lang;
+            document.getElementById('currentLang').textContent = lang.toUpperCase();
+            
+            // Update active state
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.getAttribute('data-lang') === lang) {
+                    opt.classList.add('active');
+                }
+            });
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const keys = element.getAttribute('data-i18n').split('.');
+                let translation = translations[lang];
+                keys.forEach(key => translation = translation[key]);
+                element.textContent = translation;
+            });
+
+            toggleLangDropdown();
+            lucide.createIcons();
+        }
+
+        function toggleLangDropdown() {
+            document.getElementById('langDropdown').classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-switcher')) {
+                document.getElementById('langDropdown').classList.remove('active');
+            }
+        });
 
         // Mobile Menu Toggle
         function toggleMobileMenu() {

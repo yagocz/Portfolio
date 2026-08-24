@@ -1,1091 +1,202 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yago Caldas | Fullstack Developer · AI Platform Engineer · DevOps</title>
-    <meta name="description" content="Ernesto Yago Caldas Zapata — Fullstack Developer, AI Platform Engineer y DevOps con más de dos años construyendo y operando software en producción. Lima, Perú.">
-    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yago Caldas — Fullstack Developer · AI Platform Engineer · DevOps</title>
+  <meta name="description" content="Fullstack Developer, AI Platform Engineer y DevOps en Lima, Perú. Más de tres años construyendo y operando software en producción: web, móvil, APIs, plataformas con LLMs e infraestructura.">
+  <meta name="author" content="Ernesto Yago Caldas Zapata">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Yago Caldas — Fullstack Developer · AI Platform Engineer · DevOps">
+  <meta property="og:description" content="Fullstack Developer, AI Platform Engineer y DevOps en Lima, Perú. Más de tres años construyendo y operando software en producción.">
+  <meta property="og:url" content="https://yagocz.github.io/Portfolio/">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://yagocz.github.io/Portfolio/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Inter,system-ui,sans-serif' font-size='26' font-weight='700' fill='%23fff'%3EYC%3C/text%3E%3C/svg%3E">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- Evita flash de tema incorrecto antes de que cargue el JS -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
-            --accent: #f59e0b;
-            --bg-dark: #0a0a0f;
-            --bg-darker: #050508;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(99, 102, 241, 0.2);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --success: #10b981;
-            --glow: rgba(99, 102, 241, 0.4);
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
 
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at bottom, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-        }
-        .bg-grid {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3;
-            background-image: linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* Custom Cursor */
-        .cursor { width: 40px; height: 40px; border: 2px solid var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: left 0.15s ease, top 0.15s ease; }
-        .cursor-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
-
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
-
-        /* Header */
-        header { background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--glass-border); animation: slideDown 0.5s ease; }
-        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; gap: 20px; }
-        .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; white-space: nowrap; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.3s; white-space: nowrap; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
-        .nav-links a:hover { color: var(--text-primary); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-right { display: flex; align-items: center; gap: 12px; }
-
-        /* Hero Section */
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 120px; }
-        .hero-content { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
-        .hero-text h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 800; margin-bottom: 20px; line-height: 1.1; background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp 0.8s ease; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .hero-subtitle { color: var(--primary); font-size: 1rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 15px; animation: fadeInUp 0.8s ease 0.2s both; }
-        .hero-description { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.8; animation: fadeInUp 0.8s ease 0.4s both; }
-        .hero-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 30px; color: var(--text-muted); font-size: 0.9rem; animation: fadeInUp 0.8s ease 0.5s both; }
-        .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
-        .hero-meta svg { width: 16px; height: 16px; color: var(--primary-light); }
-        .hero-cta { display: flex; gap: 20px; animation: fadeInUp 0.8s ease 0.6s both; }
-        .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem; display: inline-block; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4); }
-        .btn-secondary { background: transparent; color: var(--text-primary); border: 2px solid var(--glass-border); }
-        .btn-secondary:hover { background: var(--glass); border-color: var(--primary); }
-
-        /* Code Visual */
-        .hero-visual { position: relative; }
-        .code-window { background: rgba(15, 15, 25, 0.8); border: 1px solid var(--glass-border); border-radius: 12px; padding: 30px; backdrop-filter: blur(10px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); animation: float 6s ease-in-out infinite; overflow-x: auto; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-
-        .code-header { display: flex; gap: 8px; margin-bottom: 20px; }
-        .code-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .code-dot:nth-child(1) { background: #ff5f56; }
-        .code-dot:nth-child(2) { background: #ffbd2e; }
-        .code-dot:nth-child(3) { background: #27c93f; }
-        .code-content { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.8; white-space: pre; }
-        .code-line { display: block; }
-        .code-keyword { color: var(--primary-light); }
-        .code-function { color: var(--accent); }
-        .code-string { color: var(--success); }
-        .code-comment { color: var(--text-muted); font-style: italic; }
-
-        /* Stats */
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin: 80px 0; }
-        .stat-card { text-align: center; padding: 30px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; transition: all 0.3s; }
-        .stat-card:hover { transform: translateY(-5px); background: rgba(99, 102, 241, 0.1); border-color: var(--primary); }
-        .stat-number { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat-label { color: var(--text-secondary); margin-top: 10px; font-size: 1rem; }
-
-        /* Sections */
-        .section { padding: 120px 0; }
-        .section-header { max-width: 800px; margin-bottom: 70px; }
-        .section-label { color: var(--primary); font-weight: 600; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; }
-        .section-title { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
-        .section-description { color: var(--text-secondary); font-size: 1.15rem; line-height: 1.8; }
-
-        /* Experience timeline */
-        .timeline { position: relative; padding-left: 40px; }
-        .timeline::before { content: ''; position: absolute; left: 6px; top: 10px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--primary) 0%, rgba(99, 102, 241, 0.05) 100%); }
-        .exp-card { position: relative; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px; margin-bottom: 40px; transition: all 0.4s; }
-        .exp-card::before { content: ''; position: absolute; left: -40px; top: 46px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2); }
-        .exp-card:hover { background: rgba(99, 102, 241, 0.06); border-color: var(--primary); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15); }
-        .exp-card.current::before { background: var(--success); box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.25); }
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
-        .exp-role { font-size: 1.45rem; font-weight: 700; line-height: 1.3; }
-        .exp-company { color: var(--primary-light); font-weight: 600; font-size: 1.05rem; margin-top: 4px; }
-        .exp-meta { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-        .exp-meta .exp-period { color: var(--accent); font-weight: 600; }
-        .exp-summary { color: var(--text-secondary); margin-bottom: 22px; line-height: 1.75; }
-        .exp-bullets { list-style: none; margin-bottom: 18px; }
-        .exp-bullets li { position: relative; padding-left: 24px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.7; font-size: 0.97rem; }
-        .exp-bullets li::before { content: '▹'; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
-        .exp-bullets li.collapsed { display: none; }
-        .exp-toggle { background: none; border: 1px solid var(--glass-border); color: var(--primary-light); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; margin-bottom: 22px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 6px; }
-        .exp-toggle:hover { background: rgba(99, 102, 241, 0.12); border-color: var(--primary); }
-        .exp-toggle svg { width: 14px; height: 14px; }
-        .exp-tech { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 20px; border-top: 1px solid rgba(99, 102, 241, 0.12); }
-
-        /* Projects Grid */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
-        .project-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px; transition: all 0.4s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-        .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
-        .project-card:hover::before { transform: scaleX(1); }
-        .project-card:hover { transform: translateY(-10px); background: rgba(99, 102, 241, 0.08); border-color: var(--primary); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2); }
-        .project-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
-        .project-icon svg { width: 30px; height: 30px; color: white; }
-        .project-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 15px; }
-        .project-description { color: var(--text-secondary); margin-bottom: 25px; line-height: 1.7; flex: 1; }
-        .project-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
-        .tag { background: rgba(99, 102, 241, 0.1); color: var(--primary-light); padding: 6px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 500; border: 1px solid rgba(99, 102, 241, 0.2); }
-        .project-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 600; text-decoration: none; transition: gap 0.3s; }
-        .project-link:hover { gap: 12px; }
-
-        /* Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .skill-category { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 35px; transition: all 0.3s; }
-        .skill-category:hover { border-color: var(--primary); background: rgba(99, 102, 241, 0.05); }
-        .skill-category h3 { color: var(--primary); font-size: 1rem; font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .skill-category h3 svg { width: 18px; height: 18px; }
-        .skill-items { display: flex; flex-wrap: wrap; gap: 12px; }
-        .skill-item { background: rgba(15, 15, 25, 0.6); padding: 10px 18px; border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); border: 1px solid rgba(99, 102, 241, 0.1); transition: all 0.3s; }
-        .skill-item:hover { background: rgba(99, 102, 241, 0.15); color: var(--primary-light); border-color: var(--primary); transform: scale(1.05); }
-
-        /* Education */
-        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .edu-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 32px; display: flex; gap: 20px; transition: all 0.3s; }
-        .edu-card:hover { border-color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-5px); }
-        .edu-icon { flex-shrink: 0; width: 50px; height: 50px; border-radius: 10px; background: rgba(99, 102, 241, 0.15); display: flex; align-items: center; justify-content: center; }
-        .edu-icon svg { width: 24px; height: 24px; color: var(--primary-light); }
-        .edu-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
-        .edu-inst { color: var(--primary-light); font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; }
-        .edu-meta { color: var(--text-muted); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
-
-        /* Contact */
-        .contact-content { text-align: center; max-width: 700px; margin: 0 auto; }
-        .contact-email { font-size: 2rem; font-weight: 700; color: var(--primary); margin: 30px 0; word-break: break-all; }
-        .contact-email a { color: inherit; text-decoration: none; }
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 40px; }
-        .social-link { width: 50px; height: 50px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.3s; }
-        .social-link:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-5px); }
-        .contact-box { margin-top: 30px; padding: 25px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; text-align: left; }
-        .contact-box h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.1rem; }
-        .contact-box p { color: var(--text-secondary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .contact-box p:last-child { margin-bottom: 0; }
-        .contact-box svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-        footer { padding: 50px 0; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
-
-        /* Scroll reveal */
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* Mobile Menu */
-        .mobile-menu-btn { display: none; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 8px; padding: 10px; cursor: pointer; }
-        .mobile-menu-btn svg { width: 24px; height: 24px; color: var(--text-primary); }
-        .mobile-nav { display: none; position: fixed; top: 80px; left: 0; right: 0; background: rgba(10, 10, 15, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 20px; z-index: 999; }
-        .mobile-nav.active { display: block; animation: slideDown 0.3s ease; }
-        .mobile-nav ul { list-style: none; }
-        .mobile-nav li { margin: 18px 0; }
-        .mobile-nav a { color: var(--text-primary); font-size: 1.2rem; font-weight: 600; text-decoration: none; display: block; }
-        .mobile-lang { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .mobile-lang button { background: var(--glass); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px; color: var(--text-primary); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; }
-        .mobile-lang button.active { border-color: var(--primary); background: rgba(99, 102, 241, 0.15); color: var(--primary-light); }
-
-        /* Language Switcher */
-        .lang-switcher { position: relative; }
-        .lang-btn { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 8px; padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-primary); font-weight: 500; transition: all 0.3s; font-family: 'Inter', sans-serif; }
-        .lang-btn:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--primary); }
-        .lang-btn svg { width: 18px; height: 18px; }
-        .lang-dropdown { position: absolute; top: 120%; right: 0; background: rgba(15, 15, 25, 0.98); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; min-width: 150px; display: none; z-index: 1000; }
-        .lang-dropdown.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .lang-option { padding: 10px 15px; cursor: pointer; border-radius: 8px; transition: all 0.2s; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; }
-        .lang-option:hover { background: var(--glass); color: var(--primary); }
-        .lang-option.active { background: rgba(99, 102, 241, 0.1); color: var(--primary); font-weight: 600; }
-
-        @media (max-width: 1100px) {
-            .stats { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 1024px) {
-            .hero-content { grid-template-columns: 1fr; gap: 40px; }
-            .container { padding: 0 30px; }
-            .hero-text { order: 2; }
-            .hero-visual { order: 1; }
-            .nav-links { gap: 1.6rem; }
-        }
-        @media (max-width: 860px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-        }
-        @media (max-width: 768px) {
-            .stats { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .edu-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .section { padding: 80px 0; }
-            .container { padding: 0 20px; }
-            .code-window { padding: 20px; }
-            .code-content { font-size: 0.72rem; }
-            .hero-cta { flex-direction: column; }
-            .btn { width: 100%; text-align: center; }
-            .timeline { padding-left: 24px; }
-            .timeline::before { left: 2px; }
-            .exp-card { padding: 26px; }
-            .exp-card::before { left: -28px; width: 12px; height: 12px; top: 32px; }
-            .exp-meta { text-align: left; }
-            .exp-role { font-size: 1.2rem; }
-        }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .stat-number { font-size: 2rem; }
-            .project-card { padding: 25px; }
-            .skill-category { padding: 25px; }
-            .contact-email { font-size: 1.3rem; }
-        }
-    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ernesto Yago Caldas Zapata",
+    "alternateName": "Yago Caldas",
+    "jobTitle": "Fullstack Developer · AI Platform Engineer · DevOps",
+    "email": "mailto:yagocz0206@gmail.com",
+    "telephone": "+51994146110",
+    "url": "https://yagocz.github.io/Portfolio/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lima", "addressCountry": "PE" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Peruana de Ciencias Aplicadas" },
+    "sameAs": ["https://github.com/yagocz", "https://www.linkedin.com/in/yago-caldas/"],
+    "knowsLanguage": ["es", "en"]
+  }
+  </script>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="bg-grid"></div>
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
+  <a class="skip-link" href="#main">Ir al contenido</a>
 
-    <header>
-        <nav class="container">
-            <div class="logo">YAGO.DEV</div>
-            <ul class="nav-links">
-                <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
-                <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
-                <li><a href="#skills" data-i18n="nav.skills">Habilidades</a></li>
-                <li><a href="#educacion" data-i18n="nav.education">Educación</a></li>
-                <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
-            </ul>
-            <div class="nav-right">
-                <div class="lang-switcher">
-                    <button class="lang-btn" onclick="toggleLangDropdown(event)" aria-label="Idioma / Language">
-                        <i data-lucide="globe"></i>
-                        <span id="currentLang">ES</span>
-                    </button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <div class="lang-option active" onclick="changeLang('es')" data-lang="es">
-                            <span>🇵🇪</span>
-                            <span>Español</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLang('en')" data-lang="en">
-                            <span>🇺🇸</span>
-                            <span>English</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-        </nav>
-        <div class="mobile-nav" id="mobileNav">
-            <ul>
-                <li><a href="#experiencia" onclick="toggleMobileMenu()" data-i18n="nav.experience">Experiencia</a></li>
-                <li><a href="#proyectos" onclick="toggleMobileMenu()" data-i18n="nav.projects">Proyectos</a></li>
-                <li><a href="#skills" onclick="toggleMobileMenu()" data-i18n="nav.skills">Habilidades</a></li>
-                <li><a href="#educacion" onclick="toggleMobileMenu()" data-i18n="nav.education">Educación</a></li>
-                <li><a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.contact">Contacto</a></li>
-            </ul>
-            <div class="mobile-lang">
-                <button data-lang="es" onclick="changeLang('es'); toggleMobileMenu();">🇵🇪 Español</button>
-                <button data-lang="en" onclick="changeLang('en'); toggleMobileMenu();">🇺🇸 English</button>
-            </div>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="Yago Caldas">
+        <span class="brand-mark" aria-hidden="true">YC</span>
+        <span>Yago Caldas</span>
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <a href="#perfil" data-i18n="nav.profile">Perfil</a>
+        <a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
+        <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#educacion" data-i18n="nav.education">Educación</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Idioma / Language">
+          <button type="button" data-action="lang" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-action="lang" data-lang="en" aria-pressed="false">EN</button>
         </div>
-    </header>
+        <button type="button" class="icon-btn" data-action="theme" data-i18n-aria="ui.toggleTheme" aria-label="Cambiar tema">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button type="button" class="icon-btn menu-btn" aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria="ui.openMenu" aria-label="Abrir menú">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Móvil">
+      <a href="#perfil" data-i18n="nav.profile">Perfil</a>
+      <a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
+      <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+      <a href="#skills" data-i18n="nav.skills">Skills</a>
+      <a href="#educacion" data-i18n="nav.education">Educación</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+  </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <div class="hero-subtitle" data-i18n="hero.subtitle">FULLSTACK DEVELOPER · AI PLATFORM ENGINEER · DEVOPS</div>
-                        <h1>Ernesto Yago Caldas Zapata</h1>
-                        <p class="hero-description" data-i18n="hero.description"></p>
-                        <div class="hero-meta">
-                            <span><i data-lucide="map-pin"></i> Lima, Perú</span>
-                            <span><i data-lucide="languages"></i> <span data-i18n="hero.english">Inglés C2</span></span>
-                            <span><i data-lucide="briefcase"></i> <span data-i18n="hero.experience">+2 años en producción</span></span>
-                        </div>
-                        <div class="hero-cta">
-                            <a href="#experiencia" class="btn btn-primary" data-i18n="hero.cta1">Ver Experiencia</a>
-                            <a href="#contacto" class="btn btn-secondary" data-i18n="hero.cta2">Contacto</a>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="code-window">
-                            <div class="code-header">
-                                <div class="code-dot"></div>
-                                <div class="code-dot"></div>
-                                <div class="code-dot"></div>
-                            </div>
-                            <div class="code-content"><span class="code-line"><span class="code-keyword">class</span> <span class="code-function">Engineer</span>:</span>
-<span class="code-line">    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self):</span>
-<span class="code-line">        self.name = <span class="code-string">"Yago Caldas"</span></span>
-<span class="code-line">        self.roles = [</span>
-<span class="code-line">            <span class="code-string">"Fullstack"</span>, <span class="code-string">"AI Platform"</span>, <span class="code-string">"DevOps"</span></span>
-<span class="code-line">        ]</span>
-<span class="code-line">        self.stack = [</span>
-<span class="code-line">            <span class="code-string">"Python"</span>, <span class="code-string">"Flutter"</span>, <span class="code-string">"React"</span>,</span>
-<span class="code-line">            <span class="code-string">"Docker"</span>, <span class="code-string">"Kamal"</span>, <span class="code-string">"MCP"</span></span>
-<span class="code-line">        ]</span>
-<span class="code-line">        self.english = <span class="code-string">"C2"</span></span>
-<span class="code-line"></span>
-<span class="code-line">    <span class="code-keyword">def</span> <span class="code-function">ship</span>(self):</span>
-<span class="code-line">        <span class="code-comment"># build → deploy → operate</span></span>
-<span class="code-line">        <span class="code-keyword">return</span> <span class="code-string">"production"</span></span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stats reveal">
-                    <div class="stat-card">
-                        <div class="stat-number">2+</div>
-                        <div class="stat-label" data-i18n="stats.years">Años de experiencia</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">25+</div>
-                        <div class="stat-label" data-i18n="stats.apps">Apps operadas en producción</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">40+</div>
-                        <div class="stat-label" data-i18n="stats.mcp">Herramientas MCP diseñadas</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label" data-i18n="stats.companies">Empresas</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="experiencia">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div class="section-label" data-i18n="experience.label">TRAYECTORIA</div>
-                    <h2 class="section-title" data-i18n="experience.title">Experiencia Profesional</h2>
-                    <p class="section-description" data-i18n="experience.description">Más de dos años construyendo y operando software en producción: web, móvil, APIs, plataformas de IA e infraestructura.</p>
-                </div>
-                <div class="timeline" id="timeline"></div>
-            </div>
-        </section>
-
-        <section class="section" id="proyectos">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div class="section-label" data-i18n="projects.label">PROYECTOS PERSONALES</div>
-                    <h2 class="section-title" data-i18n="projects.title">Proyectos Destacados</h2>
-                    <p class="section-description" data-i18n="projects.description">Proyectos propios y académicos donde exploro IA, compiladores y visión por computadora.</p>
-                </div>
-
-                <div class="projects-grid">
-                    <div class="project-card reveal">
-                        <div class="project-icon"><i data-lucide="scale"></i></div>
-                        <h3 class="project-title">LegalBot IA</h3>
-                        <p class="project-description" data-i18n="projects.legalbot.desc"></p>
-                        <div class="project-tags">
-                            <span class="tag">Next.js 14</span>
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">RAG</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">Pinecone</span>
-                        </div>
-                        <a href="https://legal-bot-two.vercel.app/" target="_blank" rel="noopener" class="project-link">
-                            <span data-i18n="projects.viewDemo">Ver Demo</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
-                        </a>
-                    </div>
-
-                    <div class="project-card reveal">
-                        <div class="project-icon"><i data-lucide="binary"></i></div>
-                        <h3 class="project-title">λόγος (Logos)</h3>
-                        <p class="project-description" data-i18n="projects.logos.desc"></p>
-                        <div class="project-tags">
-                            <span class="tag">C++17</span>
-                            <span class="tag">LLVM</span>
-                            <span class="tag">ANTLR4</span>
-                            <span class="tag">CMake</span>
-                        </div>
-                        <a href="https://github.com/kaneeqi/logos-lang" target="_blank" rel="noopener" class="project-link">
-                            <span data-i18n="projects.viewCode">Ver Código</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
-                        </a>
-                    </div>
-
-                    <div class="project-card reveal">
-                        <div class="project-icon"><i data-lucide="scan-line"></i></div>
-                        <h3 class="project-title">Plate OCR AI</h3>
-                        <p class="project-description" data-i18n="projects.plateocr.desc"></p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">YOLO11</span>
-                            <span class="tag">OpenCV</span>
-                            <span class="tag">EasyOCR</span>
-                            <span class="tag">Flask</span>
-                        </div>
-                        <a href="https://github.com/mavicCode/Proyecto-placas-vehiculares.git" target="_blank" rel="noopener" class="project-link">
-                            <span data-i18n="projects.viewRepo">Ver Repositorio</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
-                        </a>
-                    </div>
-
-                    <div class="project-card reveal">
-                        <div class="project-icon"><i data-lucide="bike"></i></div>
-                        <h3 class="project-title">SafeMoto</h3>
-                        <p class="project-description" data-i18n="projects.safemoto.desc"></p>
-                        <div class="project-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">JavaScript ES6</span>
-                        </div>
-                        <a href="https://yagocz.github.io/safemoto-landing/" target="_blank" rel="noopener" class="project-link">
-                            <span data-i18n="projects.viewLanding">Ver Landing</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="skills">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div class="section-label" data-i18n="skills.label">COMPETENCIAS</div>
-                    <h2 class="section-title" data-i18n="skills.title">Stack Tecnológico</h2>
-                    <p class="section-description" data-i18n="skills.description">Tecnologías y herramientas con las que construyo y opero soluciones robustas y escalables.</p>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="code-2"></i> <span data-i18n="skills.languages">Lenguajes</span></h3>
-                        <div class="skill-items">
-                            <span class="skill-item">Python</span>
-                            <span class="skill-item">C++</span>
-                            <span class="skill-item">C# / .NET</span>
-                            <span class="skill-item">JavaScript</span>
-                            <span class="skill-item">TypeScript</span>
-                            <span class="skill-item">Dart</span>
-                            <span class="skill-item">PHP</span>
-                            <span class="skill-item">Java</span>
-                            <span class="skill-item">R</span>
-                            <span class="skill-item">SQL / T-SQL</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="layout"></i> Frontend</h3>
-                        <div class="skill-items">
-                            <span class="skill-item">React</span>
-                            <span class="skill-item">Next.js</span>
-                            <span class="skill-item">Angular</span>
-                            <span class="skill-item">Flutter</span>
-                            <span class="skill-item">Tailwind CSS</span>
-                            <span class="skill-item">Vite</span>
-                            <span class="skill-item">HTML / CSS</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="server"></i> Backend</h3>
-                        <div class="skill-items">
-                            <span class="skill-item">Node.js / Express</span>
-                            <span class="skill-item">FastAPI</span>
-                            <span class="skill-item">ASP.NET Core</span>
-                            <span class="skill-item">Laravel</span>
-                            <span class="skill-item">REST APIs</span>
-                            <span class="skill-item">JWT</span>
-                            <span class="skill-item">WebSocket / SSE</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="database"></i> <span data-i18n="skills.data">Datos</span></h3>
-                        <div class="skill-items">
-                            <span class="skill-item">SQL Server</span>
-                            <span class="skill-item">PostgreSQL</span>
-                            <span class="skill-item">MySQL / MariaDB</span>
-                            <span class="skill-item">MongoDB</span>
-                            <span class="skill-item">Redis</span>
-                            <span class="skill-item">Qdrant</span>
-                            <span class="skill-item">TimescaleDB</span>
-                            <span class="skill-item">Power BI</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="cloud"></i> Cloud &amp; DevOps</h3>
-                        <div class="skill-items">
-                            <span class="skill-item">Azure</span>
-                            <span class="skill-item">AWS</span>
-                            <span class="skill-item">Docker</span>
-                            <span class="skill-item">Kamal</span>
-                            <span class="skill-item">Proxmox</span>
-                            <span class="skill-item">nginx</span>
-                            <span class="skill-item">Linux</span>
-                            <span class="skill-item">CI/CD</span>
-                            <span class="skill-item">Zabbix</span>
-                            <span class="skill-item">Git</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="brain"></i> <span data-i18n="skills.ai">IA</span></h3>
-                        <div class="skill-items">
-                            <span class="skill-item">Model Context Protocol (MCP)</span>
-                            <span class="skill-item">RAG</span>
-                            <span class="skill-item">Claude API</span>
-                            <span class="skill-item">Gemini</span>
-                            <span class="skill-item">Azure OpenAI</span>
-                            <span class="skill-item">CLIP</span>
-                            <span class="skill-item">YOLO</span>
-                            <span class="skill-item">Whisper</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category reveal">
-                        <h3><i data-lucide="users"></i> Soft Skills</h3>
-                        <div class="skill-items" id="softSkills"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="educacion">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div class="section-label" data-i18n="education.label">FORMACIÓN</div>
-                    <h2 class="section-title" data-i18n="education.title">Educación &amp; Certificaciones</h2>
-                </div>
-                <div class="edu-grid" id="eduGrid"></div>
-            </div>
-        </section>
-
-        <section class="section" id="contacto">
-            <div class="container">
-                <div class="contact-content reveal">
-                    <div class="section-label" data-i18n="contact.label">¿LISTO PARA COLABORAR?</div>
-                    <h2 class="section-title" data-i18n="contact.title">Construyamos Algo Increíble</h2>
-                    <p class="section-description" data-i18n="contact.description">Estoy abierto a oportunidades de desarrollo, colaboraciones en proyectos innovadores y conversaciones sobre tecnología.</p>
-                    <div class="contact-email"><a href="mailto:yagocz0206@gmail.com">yagocz0206@gmail.com</a></div>
-                    <div class="social-links">
-                        <a href="https://github.com/yagocz" target="_blank" rel="noopener" class="social-link" title="GitHub">
-                            <i data-lucide="github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/yago-caldas/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
-                            <i data-lucide="linkedin"></i>
-                        </a>
-                        <a href="mailto:yagocz0206@gmail.com" class="social-link" title="Email">
-                            <i data-lucide="mail"></i>
-                        </a>
-                        <a href="tel:+51994146110" class="social-link" title="Teléfono">
-                            <i data-lucide="phone"></i>
-                        </a>
-                    </div>
-                    <div class="contact-box">
-                        <h3 data-i18n="contact.info">Información de Contacto</h3>
-                        <p><i data-lucide="map-pin"></i> Lima, Perú</p>
-                        <p><i data-lucide="phone"></i> +51 994 146 110</p>
-                        <p><i data-lucide="mail"></i> yagocz0206@gmail.com</p>
-                        <p><i data-lucide="calendar"></i> <span data-i18n="contact.available">Disponible para oportunidades</span></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            &copy; <span id="year">2026</span> Ernesto Yago Caldas Zapata. <span data-i18n="footer.tagline">Fullstack Developer · AI Platform Engineer · DevOps.</span>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="eyebrow rise" data-i18n="hero.eyebrow">Fullstack Developer · AI Platform Engineer · DevOps</div>
+          <h1 class="rise">Ernesto Yago Caldas Zapata</h1>
+          <p class="lead rise" data-i18n="hero.lead"></p>
+          <div class="print-contact">Lima, Perú · +51 994 146 110 · yagocz0206@gmail.com · linkedin.com/in/yago-caldas · github.com/yagocz</div>
+          <div class="hero-actions rise">
+            <a class="btn btn-primary" href="#experiencia">
+              <span data-i18n="ui.viewExperience">Ver experiencia</span>
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            </a>
+            <button type="button" class="btn btn-outline" data-action="copy-email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span data-i18n="ui.copyEmail">Copiar email</span>
+            </button>
+            <button type="button" class="btn btn-ghost" data-action="print">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+              <span data-i18n="ui.downloadCv">Descargar CV</span>
+            </button>
+          </div>
+          <div class="status rise">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-i18n="ui.available">Disponible para oportunidades</span>
+            <span aria-hidden="true">·</span>
+            <span>Lima, Perú</span>
+          </div>
         </div>
-    </footer>
+        <div class="facts rise" id="facts"></div>
+      </div>
+    </section>
 
-    <script>
-        // ---------- Static UI strings ----------
-        const translations = {
-            es: {
-                nav: { experience: "Experiencia", projects: "Proyectos", skills: "Habilidades", education: "Educación", contact: "Contacto" },
-                hero: {
-                    subtitle: "FULLSTACK DEVELOPER · AI PLATFORM ENGINEER · DEVOPS",
-                    description: "Fullstack Developer y AI Platform Engineer con más de dos años de experiencia construyendo y operando software en producción: aplicaciones web y multiplataforma, APIs REST, plataformas conversacionales basadas en LLM e infraestructura DevOps en Azure, AWS y servidores on-premise. Experiencia end-to-end en diseño de arquitectura, modelado y optimización de bases de datos SQL Server y PostgreSQL, integración de hardware y sistemas de terceros, entrega continua y operación de servicios críticos para el negocio.",
-                    english: "Inglés C2",
-                    experience: "+2 años en producción",
-                    cta1: "Ver Experiencia",
-                    cta2: "Contacto"
-                },
-                stats: { years: "Años de experiencia", apps: "Apps operadas en producción", mcp: "Herramientas MCP diseñadas", companies: "Empresas" },
-                experience: {
-                    label: "TRAYECTORIA",
-                    title: "Experiencia Profesional",
-                    description: "Más de dos años construyendo y operando software en producción: web, móvil, APIs, plataformas de IA e infraestructura.",
-                    showMore: "Ver todos los logros",
-                    showLess: "Ver menos",
-                    current: "Actualidad"
-                },
-                projects: {
-                    label: "PROYECTOS PERSONALES",
-                    title: "Proyectos Destacados",
-                    description: "Proyectos propios y académicos donde exploro IA, compiladores y visión por computadora.",
-                    viewDemo: "Ver Demo",
-                    viewCode: "Ver Código",
-                    viewRepo: "Ver Repositorio",
-                    viewLanding: "Ver Landing",
-                    legalbot: { desc: "Plataforma de asistencia legal con IA generativa y arquitectura RAG. Incluye análisis de documentos PDF, simulación de audiencias judiciales y recuperación semántica de legislación peruana." },
-                    logos: { desc: "Compilador completo para un lenguaje de programación de dominio específico (DSL) enfocado en lógica proposicional. Incluye generación de LLVM IR, ejecución JIT y simulación de circuitos digitales." },
-                    plateocr: { desc: "Sistema de visión por computadora para detección y reconocimiento automático de placas vehiculares usando YOLO11 y EasyOCR con preprocesamiento avanzado de imágenes." },
-                    safemoto: { desc: "Landing page responsiva y sistema de monitoreo inteligente para motocicletas. Diseño moderno con enfoque en UX/UI y experiencia de usuario premium." }
-                },
-                skills: {
-                    label: "COMPETENCIAS",
-                    title: "Stack Tecnológico",
-                    description: "Tecnologías y herramientas con las que construyo y opero soluciones robustas y escalables.",
-                    languages: "Lenguajes",
-                    data: "Datos",
-                    ai: "IA"
-                },
-                education: { label: "FORMACIÓN", title: "Educación & Certificaciones" },
-                contact: {
-                    label: "¿LISTO PARA COLABORAR?",
-                    title: "Construyamos Algo Increíble",
-                    description: "Estoy abierto a oportunidades de desarrollo, colaboraciones en proyectos innovadores y conversaciones sobre tecnología.",
-                    info: "Información de Contacto",
-                    available: "Disponible para oportunidades"
-                },
-                footer: { tagline: "Fullstack Developer · AI Platform Engineer · DevOps." }
-            },
-            en: {
-                nav: { experience: "Experience", projects: "Projects", skills: "Skills", education: "Education", contact: "Contact" },
-                hero: {
-                    subtitle: "FULLSTACK DEVELOPER · AI PLATFORM ENGINEER · DEVOPS",
-                    description: "Fullstack Developer and AI Platform Engineer with over two years of experience building and operating production software: web and cross-platform applications, REST APIs, LLM-based conversational platforms and DevOps infrastructure on Azure, AWS and on-premise servers. End-to-end experience in architecture design, SQL Server and PostgreSQL database modeling and optimization, hardware and third-party system integration, continuous delivery and operation of business-critical services.",
-                    english: "English C2",
-                    experience: "2+ years in production",
-                    cta1: "View Experience",
-                    cta2: "Contact"
-                },
-                stats: { years: "Years of experience", apps: "Apps operated in production", mcp: "MCP tools designed", companies: "Companies" },
-                experience: {
-                    label: "CAREER",
-                    title: "Work Experience",
-                    description: "Over two years building and operating production software: web, mobile, APIs, AI platforms and infrastructure.",
-                    showMore: "Show all achievements",
-                    showLess: "Show less",
-                    current: "Present"
-                },
-                projects: {
-                    label: "PERSONAL PROJECTS",
-                    title: "Featured Projects",
-                    description: "Personal and academic projects where I explore AI, compilers and computer vision.",
-                    viewDemo: "View Demo",
-                    viewCode: "View Code",
-                    viewRepo: "View Repository",
-                    viewLanding: "View Landing",
-                    legalbot: { desc: "Legal assistance platform with generative AI and RAG architecture. Includes PDF document analysis, judicial hearing simulation, and semantic retrieval of Peruvian legislation." },
-                    logos: { desc: "Complete compiler for a domain-specific language (DSL) focused on propositional logic. Includes LLVM IR generation, JIT execution, and digital circuit simulation." },
-                    plateocr: { desc: "Computer vision system for automatic detection and recognition of vehicle license plates using YOLO11 and EasyOCR with advanced image preprocessing." },
-                    safemoto: { desc: "Responsive landing page and intelligent monitoring system for motorcycles. Modern design with focus on UX/UI and premium user experience." }
-                },
-                skills: {
-                    label: "COMPETENCIES",
-                    title: "Tech Stack",
-                    description: "Technologies and tools I use to build and operate robust, scalable solutions.",
-                    languages: "Languages",
-                    data: "Data",
-                    ai: "AI"
-                },
-                education: { label: "BACKGROUND", title: "Education & Certifications" },
-                contact: {
-                    label: "READY TO COLLABORATE?",
-                    title: "Let's Build Something Amazing",
-                    description: "I'm open to development opportunities, collaborations on innovative projects, and conversations about technology.",
-                    info: "Contact Information",
-                    available: "Available for opportunities"
-                },
-                footer: { tagline: "Fullstack Developer · AI Platform Engineer · DevOps." }
-            }
-        };
+    <section class="section" id="perfil">
+      <div class="container section-grid">
+        <div class="section-head reveal">
+          <h2 data-i18n="profile.heading">Perfil</h2>
+          <p data-i18n="profile.sub"></p>
+        </div>
+        <div class="reveal" id="profile-body"></div>
+      </div>
+    </section>
 
-        // ---------- Soft skills ----------
-        const softSkills = {
-            es: ["Colaboración en entornos ágiles (Scrum)", "Comunicación efectiva y trabajo multidisciplinario", "Aprendizaje autodirigido", "Gestión del tiempo y responsabilidad", "Pensamiento analítico y atención al detalle", "Resolución de problemas y autonomía técnica"],
-            en: ["Collaboration in agile environments (Scrum)", "Effective communication and cross-functional teamwork", "Self-directed learning", "Time management and accountability", "Analytical thinking and attention to detail", "Problem solving and technical autonomy"]
-        };
+    <section class="section" id="experiencia">
+      <div class="container section-grid">
+        <div class="section-head reveal">
+          <h2 data-i18n="experience.heading">Experiencia</h2>
+          <p data-i18n="experience.sub"></p>
+        </div>
+        <div id="jobs"></div>
+      </div>
+    </section>
 
-        // ---------- Education ----------
-        const education = {
-            es: [
-                { icon: "graduation-cap", title: "Bachiller en Ciencias de la Computación", inst: "UPC – Universidad Peruana de Ciencias Aplicadas", meta: "Lima, Perú · Marzo 2024 – Actualidad" },
-                { icon: "award", title: "Scrum Fundamentals", inst: "UPC – Universidad Peruana de Ciencias Aplicadas", meta: "Lima, Perú · Marzo 2024" },
-                { icon: "file-spreadsheet", title: "Excel Intermedio y Avanzado (certificado)", inst: "IDAT", meta: "Lima, Perú · Febrero – Marzo 2024" },
-                { icon: "languages", title: "Inglés nivel C2 (certificado)", inst: "EF SET", meta: "Certificado" }
-            ],
-            en: [
-                { icon: "graduation-cap", title: "BSc in Computer Science", inst: "UPC – Universidad Peruana de Ciencias Aplicadas", meta: "Lima, Peru · March 2024 – Present" },
-                { icon: "award", title: "Scrum Fundamentals", inst: "UPC – Universidad Peruana de Ciencias Aplicadas", meta: "Lima, Peru · March 2024" },
-                { icon: "file-spreadsheet", title: "Intermediate and Advanced Excel (certified)", inst: "IDAT", meta: "Lima, Peru · February – March 2024" },
-                { icon: "languages", title: "English level C2 (certified)", inst: "EF SET", meta: "Certified" }
-            ]
-        };
+    <section class="section" id="proyectos">
+      <div class="container section-grid">
+        <div class="section-head reveal">
+          <h2 data-i18n="projects.heading">Proyectos</h2>
+          <p data-i18n="projects.sub"></p>
+        </div>
+        <div class="projects" id="projects"></div>
+      </div>
+    </section>
 
-        // ---------- Work experience ----------
-        // Tech stacks are language-independent; shared by id.
-        const experienceTech = {
-            techbot: ["Flutter (Windows/Android/Web)", "Dart", "Riverpod", "flutter_bloc", "C++ (Win32 API)", "Laravel 12", "PHP 8.4", "PostgreSQL 17", "Redis", "RabbitMQ", "MinIO (S3)", "Docker Compose", "nginx", "FastAPI", "Python", "React 19", "TypeScript", "Vite", "Alembic", "Kotlin/Ktor", "CLIP", "YOLO", "Qdrant", "SUNAT (Nubefact/TechFact)", "Niubiz / Izipay / BBVA TotalPOS", "Ubuntu Server", "systemd", "UFW", "Git"],
-            labs24: ["Kamal", "Docker", "Proxmox", "Zabbix", "PostgreSQL", "MySQL/MariaDB", "ProxySQL", "Ruby on Rails", "Sidekiq", "Nginx", "HAProxy", "Ansible", "Let's Encrypt/Certbot", "WireGuard", "Tailscale", "Gitea/Forgejo Actions", "ERPNext/Frappe", "OpenLDAP", "CAS", "Authelia", "Bash", "Linux (Ubuntu/Debian)", "AWS"],
-            buenaventura: ["Python", "FastAPI", "FastMCP", "ASP.NET Core", "Node.js", "React 19", "TypeScript", "Vite", "SQL Server 2019/2022", "T-SQL (SPs, triggers, Database Mail)", "Docker", "Tomcat 10", "Java 17", "Maven", "Qdrant", "Azure AI Services (Azure OpenAI, Cognitive Search, Blob Storage)", "IIS (ARR)", "Anthropic Claude API", "Google Gemini", "Whisper (STT)", "JWT", "SSE", "WebSocket", "Recharts", "SheetJS", "Flyway", "GitHub Actions", "PowerShell", "MCP", "RAG"],
-            synckonnect: ["Node.js", "Express", "React", "Redux", "TypeScript", "Flutter", "AWS", "Azure", "PostgreSQL", "Sequelize", "Socket.io", "JWT"],
-            twentyfour: ["PHP 8", "React 19", "TypeScript", "Vite", "React Router", ".NET (ASP.NET Core)", "SQL Server", "Azure App Service", "Azure Blob Storage", "Azure DevOps", "Vercel", "MySQL/MariaDB", "bcrypt", "JWT"]
-        };
+    <section class="section" id="skills">
+      <div class="container section-grid">
+        <div class="section-head reveal">
+          <h2 data-i18n="skills.heading">Skills</h2>
+          <p data-i18n="skills.sub"></p>
+        </div>
+        <div id="skills-list"></div>
+      </div>
+    </section>
 
-        const experience = {
-            es: [
-                {
-                    id: "techbot", current: true,
-                    role: "Fullstack Developer – Flutter & DevOps",
-                    company: "TECHBOT Perú",
-                    period: "Marzo 2026 – Actualidad",
-                    type: "Por proyectos · Remoto (Perú)",
-                    summary: "Desarrollo, mantenimiento y puesta en producción de aplicaciones Flutter multiplataforma (Windows, Android, Web) para kioscos de autoservicio, sistemas POS y plataformas SaaS multi-tenant, con responsabilidad end-to-end sobre funcionalidades, integración de hardware, facturación electrónica y despliegue en VPS Linux.",
-                    bullets: [
-                        "Cliente Windows de TravelCab (kiosco de autoservicio) puesto en producción en el Hotel Pullman: impresión USB nativa vía Win32 Print Spooler API (plugin C++ en el runner de Flutter), modo kiosco fullscreen, teclado táctil en pantalla y control de inactividad.",
-                        "Facturación electrónica SUNAT integrada al flujo de ventas (TechFact/PSE): boletas simples y electrónicas con validación de DNI vía RENIEC, facturas con consulta de RUC y regímenes tributarios (gravado, exonerado, inafecto) reflejados correctamente tanto en el ticket impreso como en el payload a SUNAT.",
-                        "ServiceHub, plataforma SaaS multi-tenant de gestión de mantenimiento y soporte: despliegue y operación en VPS con Docker Compose (Laravel 12, PostgreSQL 17, Redis, RabbitMQ, MinIO S3) y dos frontends Flutter Web servidos detrás de un reverse proxy nginx.",
-                        "DeliBakery, kiosco de autoservicio Android integrado con Qapp: impresión USB nativa sin dependencia de middleware, fallback de ticket de pedido cuando falla la LAN e integración de pagos BBVA TotalPOS mediante un bridge REST.",
-                        "Microservicio de validación de empleados (FastAPI + PostgreSQL + Alembic) con panel de administración React/Vite, importación/exportación de plantillas Excel, desplegado con systemd y nginx.",
-                        "Backend de visión por computadora para reconocimiento de productos en POS de autopago (CLIP + YOLO + Qdrant), con indexación de imágenes del catálogo y búsqueda semántica corriendo en producción para clientes reales.",
-                        "Administración de un VPS Ubuntu 24.04 con tres servicios coexistiendo: Docker, nginx multi-sitio, UFW, fail2ban, llaves SSH y scripts de despliegue automatizado; trabajo con un equipo distribuido usando Git flow por ramas y code reviews."
-                    ]
-                },
-                {
-                    id: "labs24",
-                    role: "DevOps / Site Reliability Engineer",
-                    company: "24Labs (Geosatelital)",
-                    period: "Marzo 2025 – Julio 2026",
-                    type: "Tiempo completo · Remoto (Perú)",
-                    summary: "Responsable del despliegue, automatización y operación de la infraestructura detrás de un ecosistema de más de 25 aplicaciones (Ruby on Rails, Java Spring Boot, Python, Frappe/ERPNext) distribuidas en múltiples data centers y nubes (AWS, Contabo, on-premise), garantizando disponibilidad, seguridad y observabilidad de las plataformas en producción.",
-                    bullets: [
-                        "Despliegue y estandarización de aplicaciones con Kamal 2 + Docker, aprovisionando VMs y contenedores en Proxmox vía API (clonado de templates, cloud-init, redimensionado de discos), con MySQL/PostgreSQL como accesorios, Nginx y certificados SSL de Let's Encrypt.",
-                        "Diseño e implementación de un stack de monitoreo con Zabbix 7.0 en alta disponibilidad sobre PostgreSQL HA (pg_auto_failover), incluyendo dashboards, autodescubrimiento de contenedores Docker y gestión de hosts a través de la API de Zabbix.",
-                        "Administración del servidor de correo corporativo (Postfix/Dovecot): gestión de cuentas, respuesta a incidentes de seguridad, remoción de listas negras (Spamhaus, Microsoft) y configuración de SPF/DKIM/DMARC.",
-                        "Automatización de CI/CD con Gitea/Forgejo Actions y registries Docker privados; despliegues basados en tags y builds reproducibles.",
-                        "Administración de bases de datos: replicación MySQL master–slave con ProxySQL, TimescaleDB y diagnóstico de lag de replicación.",
-                        "Redes y acceso seguro (WireGuard, Tailscale, bastión, NAT/iptables, HAProxy) y autenticación centralizada (OpenLDAP, CAS SSO, Authelia/OIDC).",
-                        "Operación y troubleshooting de sistemas en producción: Sidekiq/Solid Queue, Redis, incidentes de disco y memoria, y despliegues zero-downtime con migraciones automáticas."
-                    ]
-                },
-                {
-                    id: "buenaventura",
-                    role: "Fullstack Developer – AI Platform Engineer",
-                    company: "Compañía de Minas Buenaventura / DTECH",
-                    period: "Febrero 2025 – Mayo 2026",
-                    type: "Freelance · Remoto (Perú)",
-                    summary: "Desarrollo end-to-end del ecosistema de software ambiental y de seguridad y salud ocupacional (SSO) para operaciones mineras: la plataforma conversacional basada en LLM LucIAna, el sistema de gestión Safe2biz / Eco2biz y la automatización de infraestructura, cubriendo IA, backend, frontend, ingeniería de datos, migraciones SQL, despliegue y auditoría de sistemas legacy.",
-                    bullets: [
-                        "Diseño e implementación del servidor Model Context Protocol (MCP) de LucIAna con más de 40 herramientas especializadas para consultar datos ambientales (compromisos, desviaciones, monitoreos, PAS, cronogramas) en SQL Server, con vistas optimizadas para IA y flags de excedencia precalculados para reducir la latencia de consulta del LLM.",
-                        "Desarrollo de APIs REST con FastAPI y ASP.NET Core, autenticación JWT y control de acceso por roles (gerente, jefe ambiental, especialista, auditor); desplegadas en Windows Server con IIS (ARR) como reverse proxy HTTPS.",
-                        "Módulo de guardrails propio alineado al OWASP LLM Top 10 (prompt injection, fuga de datos, consumo ilimitado), evaluación del Microsoft Agent Governance Toolkit y definición del roadmap de patrones agénticos.",
-                        "Sistema RAG (Retrieval-Augmented Generation) con Qdrant como vector store y Google Gemini para embeddings y re-ranking sobre documentos PDF de la normativa ambiental peruana.",
-                        "Rediseño del sistema de correos transaccionales de Safe2biz (alertas y alarmas de SSO): más de 30 plantillas HTML editables desde base de datos, tablas dinámicas con estilos y modificación de stored procedures T-SQL sobre Database Mail.",
-                        "Auditoría técnica de la base de datos corporativa (703 tablas, 1,140 stored procedures, 123 vistas, 192 funciones, 38 triggers): detección de objetos huérfanos, documentación del patrón de invocación dinámica de stored procedures y diagramas de arquitectura y ER.",
-                        "Adopción de Flyway para versionado evolutivo de SQL en 3 productos con trazabilidad en GitHub, más un pipeline de auto-deploy desde GitHub a Windows Server usando scripts PowerShell.",
-                        "Dashboards analíticos con tablas pivote drag-and-drop para accidentes e incidentes de SSO (filtros multidimensionales, drill-through y exportación real a Excel vía SheetJS), y evaluación tecnológica para migrar el monitoreo ambiental de discreto a IoT continuo (TimescaleDB, DuckDB, MQTT)."
-                    ]
-                },
-                {
-                    id: "synckonnect",
-                    role: "Fullstack Developer – App Developer",
-                    company: "SyncKonnect",
-                    period: "Enero 2024 – Febrero 2026",
-                    type: "Tiempo completo · Remoto (Estados Unidos)",
-                    summary: "Mantenimiento, evolución e implementación de nuevas funcionalidades en aplicaciones empresariales web, backend y móviles, participando en el ciclo completo de desarrollo y asegurando la seguridad, escalabilidad y estabilidad de las plataformas.",
-                    bullets: [
-                        "Mantenimiento evolutivo y desarrollo de nuevas funcionalidades en sistemas en producción; diseño, implementación y consumo de APIs REST.",
-                        "Integración Frontend ↔ Backend ↔ Mobile e implementación de sistemas de notificaciones en tiempo real.",
-                        "Desarrollo de procesos de envío masivo de correos con control de tasa, reintentos y trazabilidad.",
-                        "Gestión de almacenamiento en la nube y archivos multimedia; soporte a builds, despliegues y entornos de desarrollo y producción.",
-                        "Aplicación de buenas prácticas de seguridad, arquitectura y documentación."
-                    ]
-                },
-                {
-                    id: "twentyfour",
-                    role: "Fullstack Developer",
-                    company: "TwentyFour Digital",
-                    period: "Marzo 2023 – Enero 2024",
-                    type: "Por proyectos · Remoto (Perú)",
-                    summary: "Desarrollo y mantenimiento de una plataforma e-commerce full-stack de suscripciones digitales, contribuyendo al diseño de la arquitectura, la implementación de la API, el portal autenticado de clientes y el panel de administración.",
-                    bullets: [
-                        "Frontend SPA construido con React 19 + TypeScript + Vite y React Router v7: arquitectura basada en contextos, custom hooks, internacionalización (i18n) y separación de responsabilidades por capas.",
-                        "Gestión del catálogo de productos y ofertas con CRUD completo desde el panel de administración y precios multi-periodo (1, 3, 6 y 12 meses).",
-                        "Implementación de migraciones SQL evolutivas versionadas en SQL Server, incluyendo backfill de datos, normalización de números telefónicos y extensión del esquema sin downtime.",
-                        "Hosting de la API PHP en Azure App Service, gestión de imágenes en Azure Blob Storage y despliegue continuo con Azure DevOps Pipelines en entornos separados; capa adicional .NET (ASP.NET Core Web API) integrada con sistemas de terceros vía Azure Service Bus."
-                    ]
-                }
-            ],
-            en: [
-                {
-                    id: "techbot", current: true,
-                    role: "Fullstack Developer – Flutter & DevOps",
-                    company: "TECHBOT Perú",
-                    period: "March 2026 – Present",
-                    type: "Project-based · Remote (Peru)",
-                    summary: "Development, maintenance and production rollout of cross-platform Flutter applications (Windows, Android, Web) for self-service kiosks, POS systems and multi-tenant SaaS platforms, with end-to-end ownership of features, hardware integration, electronic invoicing and deployment on Linux VPS.",
-                    bullets: [
-                        "TravelCab Windows client (self-service kiosk) rolled out to production at Hotel Pullman: native USB printing through the Win32 Print Spooler API (C++ plugin in the Flutter runner), fullscreen kiosk mode, custom on-screen touch keyboard and inactivity control.",
-                        "SUNAT electronic invoicing integrated into the sales flow (TechFact/PSE): simple and electronic receipts with national ID validation via RENIEC, invoices with tax-ID lookup and tax regimes (taxed, exempt, non-taxable) correctly reflected in both the printed ticket and the SUNAT payload.",
-                        "ServiceHub, a multi-tenant SaaS maintenance and support management platform: deployment and operation on a VPS with Docker Compose (Laravel 12, PostgreSQL 17, Redis, RabbitMQ, MinIO S3) and two Flutter Web frontends served behind an nginx reverse proxy.",
-                        "DeliBakery, an Android self-service kiosk integrated with Qapp: native USB printing with no middleware dependency, order-ticket fallback when the LAN fails, and BBVA TotalPOS payment integration through a REST bridge.",
-                        "Employee validation microservice (FastAPI + PostgreSQL + Alembic) with a React/Vite admin panel, Excel template import/export, deployed with systemd and nginx.",
-                        "Computer vision backend for product recognition in self-checkout POS (CLIP + YOLO + Qdrant), with catalog image indexing and semantic search running in production for real clients.",
-                        "Administration of an Ubuntu 24.04 VPS hosting three coexisting services: Docker, multi-site nginx, UFW, fail2ban, SSH keys and automated deployment scripts; work with a distributed team using branch-based Git flow and code reviews."
-                    ]
-                },
-                {
-                    id: "labs24",
-                    role: "DevOps / Site Reliability Engineer",
-                    company: "24Labs (Geosatelital)",
-                    period: "March 2025 – July 2026",
-                    type: "Full-time · Remote (Peru)",
-                    summary: "Responsible for the deployment, automation and operation of the infrastructure behind an ecosystem of more than 25 applications (Ruby on Rails, Java Spring Boot, Python, Frappe/ERPNext) distributed across multiple data centers and clouds (AWS, Contabo, on-premise), ensuring availability, security and observability of production platforms.",
-                    bullets: [
-                        "Application deployment and standardization with Kamal 2 + Docker, provisioning VMs and containers on Proxmox via API (template cloning, cloud-init, disk resizing), with MySQL/PostgreSQL as accessories, Nginx and Let's Encrypt SSL certificates.",
-                        "Design and implementation of a monitoring stack with Zabbix 7.0 in high availability on PostgreSQL HA (pg_auto_failover), including dashboards, Docker container autodiscovery and host management through the Zabbix API.",
-                        "Administration of the corporate mail server (Postfix/Dovecot): account management, response to security incidents, blacklist delisting (Spamhaus, Microsoft) and SPF/DKIM/DMARC configuration.",
-                        "CI/CD automation with Gitea/Forgejo Actions and private Docker registries; tag-based deployments and reproducible builds.",
-                        "Database administration: MySQL master–slave replication with ProxySQL, TimescaleDB and replication lag troubleshooting.",
-                        "Networking and secure access (WireGuard, Tailscale, bastion host, NAT/iptables, HAProxy) and centralized authentication (OpenLDAP, CAS SSO, Authelia/OIDC).",
-                        "Operation and troubleshooting of production systems: Sidekiq/Solid Queue, Redis, disk and memory incidents, and zero-downtime deployments with automatic migrations."
-                    ]
-                },
-                {
-                    id: "buenaventura",
-                    role: "Fullstack Developer – AI Platform Engineer",
-                    company: "Compañía de Minas Buenaventura / DTECH",
-                    period: "February 2025 – May 2026",
-                    type: "Freelance · Remote (Peru)",
-                    summary: "End-to-end development of the environmental and occupational health & safety (OHS) software ecosystem for mining operations: the LLM-based conversational platform LucIAna, the Safe2biz / Eco2biz management system and infrastructure automation, covering AI, backend, frontend, data engineering, SQL migrations, deployment and legacy system auditing.",
-                    bullets: [
-                        "Design and implementation of LucIAna's Model Context Protocol (MCP) server with more than 40 specialized tools for querying environmental data (commitments, deviations, monitoring, PAS, schedules) on SQL Server, with AI-optimized views and precomputed exceedance flags to reduce LLM query latency.",
-                        "REST API development with FastAPI and ASP.NET Core, JWT authentication and role-based access control (manager, environmental head, specialist, auditor); deployed on Windows Server with IIS (ARR) as an HTTPS reverse proxy.",
-                        "In-house guardrails module aligned with the OWASP LLM Top 10 (prompt injection, data leakage, unbounded consumption), evaluation of the Microsoft Agent Governance Toolkit and definition of the agentic patterns roadmap.",
-                        "RAG (Retrieval-Augmented Generation) system with Qdrant as vector store and Google Gemini for embeddings and re-ranking over PDF documents of Peruvian environmental regulation.",
-                        "Redesign of the Safe2biz transactional email system (OHS alerts and alarms): 30+ database-editable HTML templates, styled dynamic tables and modification of T-SQL stored procedures on top of Database Mail.",
-                        "Technical audit of the corporate database (703 tables, 1,140 stored procedures, 123 views, 192 functions, 38 triggers): orphan object detection, documentation of the dynamic stored procedure invocation pattern, and architecture and ER diagrams.",
-                        "Adoption of Flyway for evolutionary SQL versioning across 3 products with GitHub traceability, plus an auto-deploy pipeline from GitHub to Windows Server using PowerShell scripts.",
-                        "Drag-and-drop pivot-table analytics dashboards for OHS accidents and incidents (multi-dimensional filters, drill-through and real Excel export via SheetJS), and technology evaluation to migrate environmental monitoring from discrete to continuous IoT (TimescaleDB, DuckDB, MQTT)."
-                    ]
-                },
-                {
-                    id: "synckonnect",
-                    role: "Fullstack Developer – App Developer",
-                    company: "SyncKonnect",
-                    period: "January 2024 – February 2026",
-                    type: "Full-time · Remote (United States)",
-                    summary: "Maintenance, evolution and implementation of new features in enterprise web, backend and mobile applications, taking part in the full development cycle and ensuring the security, scalability and stability of the platforms.",
-                    bullets: [
-                        "Evolutionary maintenance and development of new features in production systems; design, implementation and consumption of REST APIs.",
-                        "Frontend ↔ Backend ↔ Mobile integration and implementation of real-time notification systems.",
-                        "Development of bulk email delivery processes with rate control, retries and traceability.",
-                        "Cloud storage and media file management; support for builds, deployments and development and production environments.",
-                        "Application of security, architecture and documentation best practices."
-                    ]
-                },
-                {
-                    id: "twentyfour",
-                    role: "Fullstack Developer",
-                    company: "TwentyFour Digital",
-                    period: "March 2023 – January 2024",
-                    type: "Project-based · Remote (Peru)",
-                    summary: "Development and maintenance of a full-stack digital subscription e-commerce platform, contributing to architecture design, API implementation, the authenticated customer portal and the admin panel.",
-                    bullets: [
-                        "SPA frontend built with React 19 + TypeScript + Vite and React Router v7: context-based architecture, custom hooks, internationalization (i18n) and layered separation of concerns.",
-                        "Product and offer catalog management with full CRUD from the admin panel and multi-period pricing (1, 3, 6 and 12 months).",
-                        "Implementation of versioned evolutionary SQL migrations on SQL Server, including data backfill, phone number normalization and schema extension with no downtime.",
-                        "PHP API hosting on Azure App Service, image management on Azure Blob Storage and continuous deployment with Azure DevOps Pipelines across separate environments; additional .NET layer (ASP.NET Core Web API) integrated with third-party systems via Azure Service Bus."
-                    ]
-                }
-            ]
-        };
+    <section class="section" id="educacion">
+      <div class="container section-grid">
+        <div class="section-head reveal">
+          <h2 data-i18n="education.heading">Educación</h2>
+          <p data-i18n="education.sub"></p>
+        </div>
+        <div id="education-list"></div>
+      </div>
+    </section>
 
-        // ---------- Helpers ----------
-        const VISIBLE_BULLETS = 3;
-        let currentLang = 'es';
-        const expandedJobs = new Set();
+    <section class="section" id="contacto">
+      <div class="container section-grid">
+        <div class="section-head reveal">
+          <h2 data-i18n="contact.heading">Contacto</h2>
+          <p data-i18n="contact.sub"></p>
+        </div>
+        <div>
+          <p class="contact-body reveal" data-i18n="contact.body"></p>
+          <div class="contact-links" id="contact-links"></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        function t(lang, path) {
-            return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined) ? acc[key] : undefined, translations[lang]);
-        }
+  <footer class="footer">
+    <div class="container">
+      <span>© <span id="year">2026</span> Ernesto Yago Caldas Zapata</span>
+      <span data-i18n="ui.builtWith">Diseñado y construido por Yago Caldas. Sin frameworks, sin trackers.</span>
+    </div>
+  </footer>
 
-        function escapeHtml(str) {
-            return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-        }
-
-        // ---------- Reveal on scroll ----------
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.08 });
-
-        function renderExperience(lang) {
-            const container = document.getElementById('timeline');
-            const showMore = t(lang, 'experience.showMore');
-            const showLess = t(lang, 'experience.showLess');
-            container.innerHTML = experience[lang].map(job => {
-                const expanded = expandedJobs.has(job.id);
-                const hasMore = job.bullets.length > VISIBLE_BULLETS;
-                const bullets = job.bullets.map((b, i) =>
-                    `<li class="${(!expanded && i >= VISIBLE_BULLETS) ? 'collapsed' : ''}">${escapeHtml(b)}</li>`
-                ).join('');
-                const toggle = hasMore
-                    ? `<button class="exp-toggle" data-job="${job.id}" onclick="toggleJob('${job.id}')">
-                           <i data-lucide="${expanded ? 'chevron-up' : 'chevron-down'}"></i>
-                           ${expanded ? escapeHtml(showLess) : `${escapeHtml(showMore)} (${job.bullets.length})`}
-                       </button>`
-                    : '';
-                const tech = (experienceTech[job.id] || []).map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('');
-                return `
-                    <article class="exp-card reveal${job.current ? ' current' : ''}" data-job="${job.id}">
-                        <div class="exp-header">
-                            <div>
-                                <h3 class="exp-role">${escapeHtml(job.role)}</h3>
-                                <div class="exp-company">${escapeHtml(job.company)}</div>
-                            </div>
-                            <div class="exp-meta">
-                                <div class="exp-period">${escapeHtml(job.period)}</div>
-                                <div>${escapeHtml(job.type)}</div>
-                            </div>
-                        </div>
-                        <p class="exp-summary">${escapeHtml(job.summary)}</p>
-                        <ul class="exp-bullets">${bullets}</ul>
-                        ${toggle}
-                        <div class="exp-tech">${tech}</div>
-                    </article>`;
-            }).join('');
-            container.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        function toggleJob(id) {
-            const wasExpanded = expandedJobs.has(id);
-            if (wasExpanded) expandedJobs.delete(id); else expandedJobs.add(id);
-            renderExperience(currentLang);
-            document.querySelectorAll('#timeline .reveal').forEach(el => el.classList.add('active'));
-            lucide.createIcons();
-            if (wasExpanded) {
-                const card = document.querySelector(`.exp-card[data-job="${id}"]`);
-                if (card) {
-                    const top = card.getBoundingClientRect().top + window.scrollY - 100;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                }
-            }
-        }
-
-        function renderEducation(lang) {
-            document.getElementById('eduGrid').innerHTML = education[lang].map(e => `
-                <div class="edu-card reveal">
-                    <div class="edu-icon"><i data-lucide="${e.icon}"></i></div>
-                    <div>
-                        <div class="edu-title">${escapeHtml(e.title)}</div>
-                        <div class="edu-inst">${escapeHtml(e.inst)}</div>
-                        <div class="edu-meta">${escapeHtml(e.meta)}</div>
-                    </div>
-                </div>`).join('');
-            document.querySelectorAll('#eduGrid .reveal').forEach(el => observer.observe(el));
-        }
-
-        function renderSoftSkills(lang) {
-            document.getElementById('softSkills').innerHTML = softSkills[lang].map(s => `<span class="skill-item">${escapeHtml(s)}</span>`).join('');
-        }
-
-        function applyLang(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.getElementById('currentLang').textContent = lang.toUpperCase();
-            document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.getAttribute('data-lang') === lang));
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const value = t(lang, el.getAttribute('data-i18n'));
-                if (value !== undefined) el.textContent = value;
-            });
-
-            renderExperience(lang);
-            renderEducation(lang);
-            renderSoftSkills(lang);
-            lucide.createIcons();
-            try { localStorage.setItem('lang', lang); } catch (e) {}
-        }
-
-        function changeLang(lang) {
-            applyLang(lang);
-            document.getElementById('langDropdown').classList.remove('active');
-        }
-
-        function toggleLangDropdown(e) {
-            if (e) e.stopPropagation();
-            document.getElementById('langDropdown').classList.toggle('active');
-        }
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.lang-switcher')) {
-                document.getElementById('langDropdown').classList.remove('active');
-            }
-        });
-
-        function toggleMobileMenu() {
-            document.getElementById('mobileNav').classList.toggle('active');
-        }
-
-        // ---------- Cursor (desktop with mouse only) ----------
-        if (window.matchMedia('(pointer: fine)').matches && window.innerWidth > 768) {
-            const cursor = document.querySelector('.cursor');
-            const cursorDot = document.querySelector('.cursor-dot');
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-            });
-        } else {
-            document.querySelector('.cursor').style.display = 'none';
-            document.querySelector('.cursor-dot').style.display = 'none';
-        }
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // ---------- Smooth scroll with header offset ----------
-        document.addEventListener('click', (e) => {
-            const anchor = e.target.closest('a[href^="#"]');
-            if (!anchor) return;
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (!target) return;
-            e.preventDefault();
-            const top = target.getBoundingClientRect().top + window.scrollY - 90;
-            window.scrollTo({ top, behavior: 'smooth' });
-        });
-
-        // ---------- Init ----------
-        document.getElementById('year').textContent = new Date().getFullYear();
-        let initialLang = 'es';
-        try {
-            const saved = localStorage.getItem('lang');
-            if (saved && translations[saved]) initialLang = saved;
-            else if ((navigator.language || '').toLowerCase().startsWith('en')) initialLang = 'en';
-        } catch (e) {}
-        applyLang(initialLang);
-    </script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

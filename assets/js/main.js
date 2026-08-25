@@ -77,7 +77,7 @@
       const val = path.split('.').reduce((acc, k) => (acc && acc[k] !== undefined ? acc[k] : undefined), t);
       if (val !== undefined) el.setAttribute('aria-label', val);
     });
-    $('.seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === state.lang)));
+    $$('.seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === state.lang)));
 
     // CV PDF: el del idioma actual, o el de ES como fallback
     const cvLink = $('#cv-link');

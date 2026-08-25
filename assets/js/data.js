@@ -11,7 +11,9 @@ window.SITE_DATA = {
     phoneHref: "tel:+51994146110",
     location: "Lima, Perú",
     github: "https://github.com/yagocz",
-    linkedin: "https://www.linkedin.com/in/yago-caldas/"
+    linkedin: "https://www.linkedin.com/in/yago-caldas/",
+    /* PDF del CV por idioma. Si un idioma no tiene PDF, se usa el de ES. */
+    cv: { es: "assets/cv/CV-YagoCaldas-ES.pdf", en: null }
   },
 
   /* Stacks por empresa (independientes del idioma) */
@@ -179,7 +181,7 @@ window.SITE_DATA = {
     description: "Fullstack Developer, AI Platform Engineer and DevOps based in Lima, Peru. Over three years building and operating production software: web, mobile, APIs, LLM platforms and infrastructure.",
     nav: { profile: "Profile", experience: "Experience", projects: "Projects", skills: "Skills", education: "Education", contact: "Contact" },
     ui: {
-      copyEmail: "Copy email", copied: "Copied", downloadCv: "Download CV", viewExperience: "View experience",
+      copyEmail: "Copy email", copied: "Copied", downloadCv: "Download CV (Spanish)", viewExperience: "View experience",
       showMore: "Show {n} more", showMoreOne: "Show 1 more", showLess: "Show less", available: "Available for opportunities", current: "Current",
       toggleTheme: "Toggle theme", openMenu: "Open menu", closeMenu: "Close menu", visit: "Visit", code: "Code",
       builtWith: "Designed and built by Yago Caldas. No frameworks, no trackers."

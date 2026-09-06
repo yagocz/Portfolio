@@ -1,202 +1,421 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yago Caldas — Fullstack Developer · AI Platform Engineer · DevOps</title>
-  <meta name="description" content="Fullstack Developer, AI Platform Engineer y DevOps en Lima, Perú. Más de tres años construyendo y operando software en producción: web, móvil, APIs, plataformas con LLMs e infraestructura.">
-  <meta name="author" content="Ernesto Yago Caldas Zapata">
-  <meta name="theme-color" content="#ffffff">
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="Yago Caldas — Fullstack Developer · AI Platform Engineer · DevOps">
-  <meta property="og:description" content="Fullstack Developer, AI Platform Engineer y DevOps en Lima, Perú. Más de tres años construyendo y operando software en producción.">
-  <meta property="og:url" content="https://yagocz.github.io/Portfolio/">
-  <meta property="og:locale" content="es_PE">
-  <meta property="og:locale:alternate" content="en_US">
-  <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="https://yagocz.github.io/Portfolio/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Inter,system-ui,sans-serif' font-size='26' font-weight='700' fill='%23fff'%3EYC%3C/text%3E%3C/svg%3E">
-
-  <!-- Evita flash de tema incorrecto antes de que cargue el JS -->
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', t);
-      } catch (e) {}
-    })();
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ernesto Yago Caldas Zapata",
-    "alternateName": "Yago Caldas",
-    "jobTitle": "Fullstack Developer · AI Platform Engineer · DevOps",
-    "email": "mailto:yagocz0206@gmail.com",
-    "telephone": "+51994146110",
-    "url": "https://yagocz.github.io/Portfolio/",
-    "address": { "@type": "PostalAddress", "addressLocality": "Lima", "addressCountry": "PE" },
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Peruana de Ciencias Aplicadas" },
-    "sameAs": ["https://github.com/yagocz", "https://www.linkedin.com/in/yago-caldas/"],
-    "knowsLanguage": ["es", "en"]
-  }
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoyCaz Labs — Más clientes atendidos, sin contratar más personal</title>
+<meta name="description" content="Instalamos sistemas con inteligencia artificial que responden tus mensajes en segundos, llenan tu agenda y hacen volver a tus clientes antiguos. Diagnóstico gratis de 10 minutos. Lima, Perú.">
+<meta name="theme-color" content="#0b3b5a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GoyCaz Labs — Más clientes atendidos, sin contratar más personal">
+<meta property="og:description" content="Sistemas con inteligencia artificial que responden en segundos, llenan tu agenda y recuperan a tus clientes antiguos. Diagnóstico gratis.">
+<meta property="og:locale" content="es_PE">
+<meta property="og:url" content="https://yagocz.github.io/Portfolio/">
+<link rel="canonical" href="https://yagocz.github.io/Portfolio/">
+<link rel="icon" href="assets/img/goycaz-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/landing.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "GoyCaz Labs",
+  "description": "Sistemas de automatización con inteligencia artificial para negocios: atención de mensajes, agenda, reseñas y recuperación de clientes.",
+  "areaServed": { "@type": "City", "name": "Lima, Perú" },
+  "telephone": "+51994146110",
+  "email": "yagocz0206@gmail.com",
+  "url": "https://yagocz.github.io/Portfolio/",
+  "founder": { "@type": "Person", "name": "Ernesto Yago Caldas Zapata", "jobTitle": "CEO y fundador" }
+}
+</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Ir al contenido</a>
+<a class="skip-link" href="#portada">Ir al contenido</a>
 
-  <header class="header">
-    <div class="container">
-      <a class="brand" href="#top" aria-label="Yago Caldas">
-        <span class="brand-mark" aria-hidden="true">YC</span>
-        <span>Yago Caldas</span>
-      </a>
-
-      <nav class="nav" aria-label="Principal">
-        <a href="#perfil" data-i18n="nav.profile">Perfil</a>
-        <a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
-        <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
-        <a href="#skills" data-i18n="nav.skills">Skills</a>
-        <a href="#educacion" data-i18n="nav.education">Educación</a>
-        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
-      </nav>
-
-      <div class="controls">
-        <div class="seg" role="group" aria-label="Idioma / Language">
-          <button type="button" data-action="lang" data-lang="es" aria-pressed="true">ES</button>
-          <button type="button" data-action="lang" data-lang="en" aria-pressed="false">EN</button>
-        </div>
-        <button type="button" class="icon-btn" data-action="theme" data-i18n-aria="ui.toggleTheme" aria-label="Cambiar tema">
-          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        </button>
-        <button type="button" class="icon-btn menu-btn" aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria="ui.openMenu" aria-label="Abrir menú">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
-        </button>
-      </div>
-    </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Móvil">
-      <a href="#perfil" data-i18n="nav.profile">Perfil</a>
-      <a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
-      <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
-      <a href="#skills" data-i18n="nav.skills">Skills</a>
-      <a href="#educacion" data-i18n="nav.education">Educación</a>
-      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+<header class="header" id="top">
+  <div class="container">
+    <a class="logo" href="#top" aria-label="GoyCaz Labs — inicio">
+      <img src="assets/img/goycaz-logo.svg" alt="GoyCaz Labs" width="163" height="38">
+    </a>
+    <nav class="header-nav" aria-label="Principal">
+      <a href="#problemas">El problema</a>
+      <a href="#soluciones">Qué instalamos</a>
+      <a href="#proceso">Cómo funciona</a>
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#preguntas">Preguntas</a>
     </nav>
-  </header>
+    <a class="btn btn-wa header-cta" data-wa href="#" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+      Escríbeme
+    </a>
+  </div>
+</header>
 
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="container">
-        <div class="hero-inner">
-          <div class="eyebrow rise" data-i18n="hero.eyebrow">Fullstack Developer · AI Platform Engineer · DevOps</div>
-          <h1 class="rise">Ernesto Yago Caldas Zapata</h1>
-          <p class="lead rise" data-i18n="hero.lead"></p>
-          <div class="print-contact">Lima, Perú · +51 994 146 110 · yagocz0206@gmail.com · linkedin.com/in/yago-caldas · github.com/yagocz</div>
-          <div class="hero-actions rise">
-            <a class="btn btn-primary" href="#experiencia">
-              <span data-i18n="ui.viewExperience">Ver experiencia</span>
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-            </a>
-            <button type="button" class="btn btn-outline" data-action="copy-email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              <span data-i18n="ui.copyEmail">Copiar email</span>
-            </button>
-            <a class="btn btn-ghost" id="cv-link" href="assets/cv/CV-YagoCaldas-ES.pdf" download="CV-YagoCaldas-ES.pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
-              <span data-i18n="ui.downloadCv">Descargar CV</span>
-            </a>
-          </div>
-          <div class="status rise">
-            <span class="dot" aria-hidden="true"></span>
-            <span data-i18n="ui.available">Disponible para oportunidades</span>
-            <span aria-hidden="true">·</span>
-            <span>Lima, Perú</span>
-          </div>
-        </div>
-        <div class="facts rise" id="facts"></div>
+<main>
+<!-- ============ 1. PORTADA ============ -->
+<section class="hero" id="portada">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span class="live" aria-hidden="true"></span> Respuesta en segundos, las 24 horas</div>
+      <h1>Más clientes atendidos para tu negocio, <em>respondidos en segundos</em>, sin contratar más personal.</h1>
+      <p class="hero-sub">Instalamos un sistema que contesta tus mensajes a cualquier hora, llena tu agenda sola y hace volver a los clientes que ya no te compran. Tú no tocas nada: nosotros lo instalamos y lo mantenemos.</p>
+      <div class="cta-row">
+        <a class="btn btn-wa" data-wa href="#" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+          Hablemos por WhatsApp
+        </a>
+        <a class="btn btn-line" data-agenda href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+          Agenda tu diagnóstico gratis
+        </a>
       </div>
-    </section>
-
-    <section class="section" id="perfil">
-      <div class="container section-grid">
-        <div class="section-head reveal">
-          <h2 data-i18n="profile.heading">Perfil</h2>
-          <p data-i18n="profile.sub"></p>
-        </div>
-        <div class="reveal" id="profile-body"></div>
-      </div>
-    </section>
-
-    <section class="section" id="experiencia">
-      <div class="container section-grid">
-        <div class="section-head reveal">
-          <h2 data-i18n="experience.heading">Experiencia</h2>
-          <p data-i18n="experience.sub"></p>
-        </div>
-        <div id="jobs"></div>
-      </div>
-    </section>
-
-    <section class="section" id="proyectos">
-      <div class="container section-grid">
-        <div class="section-head reveal">
-          <h2 data-i18n="projects.heading">Proyectos</h2>
-          <p data-i18n="projects.sub"></p>
-        </div>
-        <div class="projects" id="projects"></div>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="container section-grid">
-        <div class="section-head reveal">
-          <h2 data-i18n="skills.heading">Skills</h2>
-          <p data-i18n="skills.sub"></p>
-        </div>
-        <div id="skills-list"></div>
-      </div>
-    </section>
-
-    <section class="section" id="educacion">
-      <div class="container section-grid">
-        <div class="section-head reveal">
-          <h2 data-i18n="education.heading">Educación</h2>
-          <p data-i18n="education.sub"></p>
-        </div>
-        <div id="education-list"></div>
-      </div>
-    </section>
-
-    <section class="section" id="contacto">
-      <div class="container section-grid">
-        <div class="section-head reveal">
-          <h2 data-i18n="contact.heading">Contacto</h2>
-          <p data-i18n="contact.sub"></p>
-        </div>
-        <div>
-          <p class="contact-body reveal" data-i18n="contact.body"></p>
-          <div class="contact-links" id="contact-links"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <span>© <span id="year">2026</span> Ernesto Yago Caldas Zapata</span>
-      <span data-i18n="ui.builtWith">Diseñado y construido por Yago Caldas. Sin frameworks, sin trackers.</span>
+      <p class="hero-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        10 minutos, sin costo y sin compromiso. Te mostramos con números cuánto estás perdiendo.
+      </p>
     </div>
-  </footer>
 
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/main.js"></script>
+    <figure class="hero-figure photo-wrap">
+      <div class="photo">
+        <!-- Cuando tengas la foto: descomenta la línea de abajo y borra el div .photo-empty -->
+        <!-- <img src="assets/img/yago.jpg" alt="Yago Caldas, CEO y fundador de GoyCaz Labs" width="380" height="475"> -->
+        <div class="photo-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/><rect x="2" y="2" width="20" height="20" rx="4"/></svg>
+          <b>Espacio para tu foto</b>
+          <span>Guarda tu foto como<br><code>assets/img/yago.jpg</code></span>
+        </div>
+      </div>
+      <figcaption class="photo-badge">Yago Caldas · CEO y fundador</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 2. LA HERIDA ============ -->
+<section class="section section-alt" id="problemas">
+  <div class="container">
+    <div class="section-head rv">
+      <div class="kicker">El problema</div>
+      <h2>¿Te suena familiar?</h2>
+    </div>
+
+    <div class="pain-grid">
+      <article class="pain rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div>
+          <b>Los mensajes se responden horas después</b>
+          <span>Un cliente escribe un sábado a las 9 de la noche. Le contestas el lunes. Para entonces ya le compró a otro.</span>
+        </div>
+      </article>
+
+      <article class="pain rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15.5 3.5 20.5 8.5M20.5 3.5 15.5 8.5"/><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        <div>
+          <b>Llamadas perdidas que nadie devuelve</b>
+          <span>Estabas ocupado y no contestaste. Esa llamada era un cliente listo para comprar, y nunca volvió a llamar.</span>
+        </div>
+      </article>
+
+      <article class="pain rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18M9 16l6 0"/></svg>
+        <div>
+          <b>Clientes que agendan y no llegan</b>
+          <span>Reservaste el horario, preparaste todo y no apareció nadie. Nadie le recordó su cita el día anterior.</span>
+        </div>
+      </article>
+
+      <article class="pain rv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6"/></svg>
+        <div>
+          <b>Clientes antiguos que nunca vuelven</b>
+          <span>Te compraron una vez, quedaron contentos y se olvidaron de ti. Están en tu celular y nadie les ha escrito.</span>
+        </div>
+      </article>
+    </div>
+
+    <p class="pain-close rv">Cada uno de esos es dinero que se te está yendo esta semana.</p>
+  </div>
+</section>
+
+<!-- ============ 3. LA SOLUCIÓN ============ -->
+<section class="section" id="soluciones">
+  <div class="container">
+    <div class="section-head rv">
+      <div class="kicker">La solución</div>
+      <h2>Lo que instalamos en tu negocio</h2>
+      <p>Cuatro sistemas que trabajan solos, todos los días, sin que tengas que aprender nada nuevo.</p>
+    </div>
+
+    <div class="sol-grid">
+      <article class="sol rv">
+        <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg></div>
+        <h3>Un asistente que responde tus mensajes en segundos, a cualquier hora</h3>
+        <p>Contesta WhatsApp, Instagram y los mensajes de tu web al instante, de día y de noche. Responde las preguntas de siempre, y cuando el cliente está listo, te lo pasa a ti.</p>
+      </article>
+
+      <article class="sol rv">
+        <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+        <h3>Tu agenda se llena sola y le recuerda la cita a cada cliente</h3>
+        <p>El cliente elige su horario sin llamarte. El sistema le manda un recordatorio antes de la cita, para que no te deje esperando.</p>
+      </article>
+
+      <article class="sol rv">
+        <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.3.9-4.5 4.4 1 6.1-5.5-2.9-5.5 2.9 1-6.1L3 9.5l6.3-.9L12 3z"/></svg></div>
+        <h3>Cada cliente feliz te deja su reseña sin que muevas un dedo</h3>
+        <p>Después de atenderlo, el sistema le pide la reseña en Google. Más estrellas significa que apareces primero cuando alguien busca lo que vendes.</p>
+      </article>
+
+      <article class="sol rv">
+        <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 20v-5h5"/></svg></div>
+        <h3>Tus clientes antiguos reciben una oferta y vuelven a comprarte</h3>
+        <p>Tomamos la lista de clientes que ya te compraron y les escribimos por ti. Es la forma más rápida de vender: gente que ya confía en ti.</p>
+      </article>
+
+      <article class="sol rv">
+        <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+        <h3>Si no alcanzas a contestar el teléfono, le escribimos por ti</h3>
+        <p>Cada llamada que se te pasa recibe un mensaje automático al instante: «Disculpa, estaba atendiendo. ¿En qué te ayudo?». Ese cliente no se pierde.</p>
+      </article>
+
+      <article class="sol rv">
+        <div class="sol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></div>
+        <h3>Todos tus clientes en un solo lugar, ordenados</h3>
+        <p>Se acabaron los apuntes en cuaderno y los mensajes perdidos. Ves quién te escribió, quién agendó y quién te compró, sin buscar en tres celulares.</p>
+      </article>
+    </div>
+
+    <div class="cta-row steps-cta rv">
+      <a class="btn btn-wa" data-wa href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+        Quiero saber cuál necesita mi negocio
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. CÓMO FUNCIONA ============ -->
+<section class="section section-alt" id="proceso">
+  <div class="container">
+    <div class="section-head rv">
+      <div class="kicker">Cómo funciona</div>
+      <h2>Tres pasos y tu negocio empieza a responder solo</h2>
+    </div>
+
+    <div class="steps">
+      <article class="step rv">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Diagnóstico gratis de 10 minutos</h3>
+          <p>Conversamos por WhatsApp o videollamada. Me cuentas cómo atiendes hoy a tus clientes. Sin costo y sin compromiso.</p>
+        </div>
+      </article>
+
+      <article class="step rv">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Te muestro con números dónde estás perdiendo plata</h3>
+          <p>Te enseño cuántos mensajes se quedan sin responder, cuántas citas se caen y cuánto vale eso al mes en tu negocio. Con tus números, no con teoría.</p>
+        </div>
+      </article>
+
+      <article class="step rv">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Instalo todo y tu negocio responde solo</h3>
+          <p>Yo lo dejo funcionando y lo mantengo mes a mes. Tú sigues atendiendo a tus clientes como siempre; el sistema hace el resto.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="cta-row steps-cta rv">
+      <a class="btn btn-navy" data-agenda href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+        Agenda tu diagnóstico gratis
+      </a>
+      <a class="btn btn-line" data-wa href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+        Prefiero escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. PRUEBA (testimonios) ============ -->
+<section class="section" id="testimonios">
+  <div class="container">
+    <div class="section-head rv">
+      <div class="kicker">Resultados</div>
+      <h2>Lo que dicen los negocios que ya lo tienen</h2>
+    </div>
+
+    <!-- ================================================================
+         CÓMO AGREGAR UN TESTIMONIO:
+         1. Borra el bloque <div class="tst-empty"> de abajo.
+         2. Copia el ejemplo comentado, uno por cada cliente real.
+         Nunca inventes nombres ni negocios: si te descubren, pierdes
+         el cliente y la referencia.
+         ================================================================ -->
+
+    <div class="tst-grid">
+      <!--
+      <article class="tst rv">
+        <p class="tst-quote">«Antes se me perdían los mensajes del fin de semana. Ahora llego el lunes y ya tengo las citas agendadas.»</p>
+        <div class="tst-who">
+          <div class="tst-av">MR</div>
+          <div>
+            <div class="tst-name">María Rojas</div>
+            <div class="tst-biz">Centro Odontológico Sonrisa</div>
+          </div>
+        </div>
+      </article>
+      -->
+
+      <div class="tst-empty rv" style="grid-column: 1 / -1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
+        <b>Sección lista para tus primeros testimonios</b>
+        <p>Cuando un cliente te dé su opinión, se agrega aquí con su nombre y su negocio. Instrucciones dentro del código de esta sección.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. QUIÉN ESTÁ DETRÁS ============ -->
+<section class="section section-alt" id="nosotros">
+  <div class="container">
+    <div class="section-head rv">
+      <div class="kicker">Quiénes somos</div>
+      <h2>Quién está detrás de GoyCaz Labs</h2>
+    </div>
+
+    <div class="about">
+      <div class="about-body rv">
+        <p>Soy Yago Caldas, CEO y fundador de GoyCaz Labs. Llevo más de tres años construyendo y manteniendo software que funciona todos los días en empresas de verdad, no en presentaciones.</p>
+        <p>He desarrollado plataformas con inteligencia artificial para una de las mineras más grandes del Perú, sistemas de venta y facturación electrónica que atienden clientes a diario, y he mantenido la infraestructura de más de 25 aplicaciones en producción sin que se caigan.</p>
+        <p>Ese mismo trabajo, que antes solo estaba al alcance de las grandes empresas, es el que ahora instalo en negocios como el tuyo, a un precio que sí puedes pagar.</p>
+        <p class="about-kick">No soy una agencia gigante: soy yo, trabajando directo contigo.</p>
+
+        <ul class="cred">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Ingeniería en producción para minería, salud ocupacional y retail</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Especialista en inteligencia artificial aplicada a atención de clientes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Estudiante de Ciencias de la Computación en la UPC · Inglés C2</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Atención directa conmigo, sin intermediarios ni call center</li>
+        </ul>
+
+        <div class="about-links">
+          <a href="perfil.html">Ver mi trayectoria técnica completa →</a>
+          <a href="assets/cv/CV-YagoCaldas-ES.pdf" download>Descargar mi CV (PDF)</a>
+        </div>
+      </div>
+
+      <aside class="stats rv" aria-label="Trayectoria en números">
+        <div class="stat"><b>3+</b><span>años en producción</span></div>
+        <div class="stat"><b>25+</b><span>aplicaciones operadas</span></div>
+        <div class="stat"><b>5</b><span>empresas atendidas</span></div>
+        <div class="stat"><b>24/7</b><span>tus clientes atendidos</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. PREGUNTAS FRECUENTES ============ -->
+<section class="section" id="preguntas">
+  <div class="container">
+    <div class="section-head rv">
+      <div class="kicker">Preguntas frecuentes</div>
+      <h2>Lo que todos preguntan antes de empezar</h2>
+    </div>
+
+    <div class="faq">
+      <details class="rv" open>
+        <summary>¿Tengo que entender de tecnología?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-body">No. Yo instalo y mantengo todo, tú no tocas nada. Sigues usando tu WhatsApp de siempre; la diferencia es que ahora responde aunque estés ocupado o durmiendo.</div>
+      </details>
+
+      <details class="rv">
+        <summary>¿Cuánto demora?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-body">Días, no meses. Lo básico queda funcionando en la primera semana y desde ahí lo vamos afinando con casos reales de tu negocio.</div>
+      </details>
+
+      <details class="rv">
+        <summary>¿Y si no funciona para mi negocio?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-body">Por eso el diagnóstico es gratis: ves los números y decides. Si en esos 10 minutos veo que tu negocio no lo necesita, te lo digo de frente y no te cobro nada.</div>
+      </details>
+
+      <details class="rv">
+        <summary>¿Cuánto cuesta?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-body">Menos que un empleado a medio tiempo, y trabaja 24 horas al día sin descansar. El número exacto sale del diagnóstico, porque depende de cuántos sistemas necesite tu negocio.</div>
+      </details>
+
+      <details class="rv">
+        <summary>¿Para qué tipo de negocios sirve?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-body">Para cualquier negocio que atienda clientes por mensaje o que trabaje con citas: clínicas y consultorios, gimnasios, academias, inmobiliarias, talleres, salones y estudios profesionales. Si tus clientes te escriben, esto te sirve.</div>
+      </details>
+
+      <details class="rv">
+        <summary>¿Y mi información y la de mis clientes?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-body">Todo queda en tus cuentas, a tu nombre. Yo lo configuro y lo administro, pero los datos de tus clientes son tuyos y te los puedes llevar cuando quieras.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. CIERRE ============ -->
+<section class="section section-navy" id="cierre">
+  <div class="container close-box">
+    <div class="section-head center rv" style="margin-bottom: 0;">
+      <div class="kicker">Empecemos</div>
+      <h2>Tu competencia ya está respondiendo más rápido que tú</h2>
+      <p>Cada día que pasa sin sistema son mensajes sin responder y clientes que se van con otro. El diagnóstico dura 10 minutos y no te cuesta nada.</p>
+    </div>
+    <div class="cta-row rv">
+      <a class="btn btn-wa btn-block" data-wa href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+        Hablemos por WhatsApp
+      </a>
+      <a class="btn btn-line-white btn-block" data-agenda href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+        Agenda tu diagnóstico gratis
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><img src="assets/img/goycaz-logo.svg" alt="GoyCaz Labs" width="150" height="35"></div>
+        <p>Sistemas con inteligencia artificial para negocios que quieren atender mejor.<br>Lima, Perú · Atendemos presencial y a distancia.</p>
+      </div>
+      <nav class="footer-links" aria-label="Pie de página">
+        <a data-wa href="#" rel="noopener">WhatsApp</a>
+        <a href="mailto:yagocz0206@gmail.com">Correo</a>
+        <a href="perfil.html">Perfil del fundador</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© <span id="year">2026</span> GoyCaz Labs · Ernesto Yago Caldas Zapata</div>
+  </div>
+</footer>
+
+<a class="wa-float" data-wa href="#" rel="noopener" aria-label="Escríbeme por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+  <span>Escríbeme</span>
+</a>
+
+<script src="assets/js/landing.js"></script>
 </body>
 </html>

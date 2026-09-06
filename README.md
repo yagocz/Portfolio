@@ -1,67 +1,37 @@
-# GoyCaz Labs
+# Portfolio — Yago Caldas
 
-Sitio de **GoyCaz Labs** (Ernesto Yago Caldas Zapata, CEO y fundador).
-Estático, sin build ni dependencias. Publicado con GitHub Pages en
-<https://yagocz.github.io/Portfolio/>.
+Sitio personal: **https://yagocz.github.io/Portfolio/**
 
-## Páginas
-
-| Archivo | Qué es |
-|---|---|
-| `index.html` | **Landing comercial.** Lo que mandas por WhatsApp a un cliente. |
-| `perfil.html` | **Perfil técnico del fundador** (el portfolio de desarrollador, ES/EN). |
+Estático, sin build, sin dependencias. HTML + CSS + JS vanilla servido por GitHub Pages.
 
 ## Estructura
 
 ```
-index.html              Landing de GoyCaz Labs (8 secciones)
-perfil.html             Portfolio técnico de Yago (CV interactivo)
-assets/css/landing.css  Estilos de la landing
-assets/css/styles.css   Estilos del perfil técnico
-assets/js/landing.js    Config de WhatsApp/agenda + interacciones
-assets/js/data.js       Contenido del perfil técnico (ES/EN)
-assets/js/main.js       Lógica del perfil técnico
-assets/img/             Logo de GoyCaz Labs y foto
-assets/cv/              CV en PDF
+index.html            Estructura de la página (solo esqueleto + strings por defecto)
+assets/css/styles.css Estilos. Tema claro/oscuro, responsive, print (Descargar CV)
+assets/js/data.js     TODO el contenido, en ES y EN (experiencia, proyectos, skills…)
+assets/js/main.js     i18n, tema, render, micro-interacciones
+assets/cv/            PDF del CV (enlazado desde "Descargar CV"; ruta en data.js → meta.cv)
 ```
 
-## Lo que vas a querer cambiar
+## Actualizar el CV
 
-### 1. WhatsApp y link de agenda
+Editar únicamente `assets/js/data.js`:
 
-Todo está en las primeras líneas de **`assets/js/landing.js`**:
+- `es` / `en` → textos en cada idioma (misma estructura en ambos).
+- `tech` → stack por empresa (compartido entre idiomas).
+- `projectsMeta` → proyectos (url, tags); su descripción va en `es.projects.items` / `en.projects.items`.
+- `skills` → categorías y chips.
 
-```js
-const CONFIG = {
-  whatsapp: '51994146110',                                  // tu número, solo dígitos
-  mensaje:  'Hola Yago, vi tu página y quiero saber más',   // mensaje precargado
-  agenda:   ''                                              // ← pega aquí tu link de calendario
-};
-```
+## Funcionalidades
 
-Mientras `agenda` esté vacío, el botón *"Agenda tu diagnóstico gratis"* abre WhatsApp.
+- Idioma ES/EN con detección del navegador y persistencia en `localStorage`.
+- Tema claro/oscuro con detección del sistema y persistencia; sin flash al cargar.
+- "Copiar email" con feedback, "Descargar CV" descarga el PDF de `assets/cv/` (por idioma, con fallback a ES). La página también tiene estilos de impresión (Ctrl+P) con todos los logros expandidos.
+- Logros de cada puesto colapsados a 3, con expansión.
+- Animaciones sutiles (entrada del hero, reveal al scroll) desactivadas con `prefers-reduced-motion`.
+- SEO: Open Graph, JSON-LD `Person`, canonical.
 
-**Cómo sacar un calendario gratis (3 pasos):**
-1. Entra a [cal.com](https://cal.com) o [calendly.com](https://calendly.com) y crea una cuenta gratis con tu correo.
-2. Crea un evento de **10 minutos** llamado "Diagnóstico gratis" y conecta tu Google Calendar para que solo ofrezca horas libres.
-3. Copia el link que te dan (algo como `https://cal.com/yago/diagnostico`) y pégalo en `agenda`.
+## Desarrollo local
 
-### 2. Tu foto
-
-Guarda la foto como **`assets/img/yago.jpg`** (vertical, aprox. 800×1000 px). Luego en
-`index.html`, en la sección de portada: descomenta la línea del `<img>` y borra el
-`<div class="photo-empty">`.
-
-### 3. Testimonios
-
-En `index.html`, sección `#testimonios`. Hay un ejemplo comentado listo para copiar.
-Borra el bloque `tst-empty` cuando agregues el primero.
-**No inventes testimonios**: un cliente los verifica en dos minutos.
-
-## Desarrollo
-
-No hay build. Abre `index.html` en el navegador. Para revisar cambios:
-
-```bash
-node --check assets/js/landing.js   # sintaxis
-```
+Abrir `index.html` en el navegador o servir la carpeta con cualquier servidor estático (`python -m http.server`).
